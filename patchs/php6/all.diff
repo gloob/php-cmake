@@ -1,0 +1,32 @@
+Index: Zend/zend_arg_defs.c
+===================================================================
+RCS file: /repository/ZendEngine2/zend_arg_defs.c,v
+retrieving revision 1.7
+diff -u -r1.7 zend_arg_defs.c
+--- Zend/zend_arg_defs.c	31 Dec 2007 07:12:06 -0000	1.7
++++ Zend/zend_arg_defs.c	27 Apr 2008 18:15:14 -0000
+@@ -18,6 +18,8 @@
+ 
+ /* $Id: zend_arg_defs.c,v 1.7 2007/12/31 07:12:06 sebastian Exp $ */
+ 
++#include "Zend_API.h"
++
+ ZEND_BEGIN_ARG_INFO(first_arg_force_ref, 0)
+ 	ZEND_ARG_PASS_INFO(1)
+ ZEND_END_ARG_INFO();
+Index: Zend/zend_static_allocator.c
+===================================================================
+RCS file: /repository/ZendEngine2/zend_static_allocator.c,v
+retrieving revision 1.17
+diff -u -r1.17 zend_static_allocator.c
+--- Zend/zend_static_allocator.c	31 Dec 2007 07:12:07 -0000	1.17
++++ Zend/zend_static_allocator.c	27 Apr 2008 18:15:14 -0000
+@@ -20,6 +20,8 @@
+ 
+ #include "zend_static_allocator.h"
+ 
++#include <stdlib.h>
++
+ /* Not checking emalloc() and erealloc() return values as they are supposed to bailout */
+ 
+ inline static void block_init(Block *block, zend_uint block_size) /* {{{ */

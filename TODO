@@ -1,0 +1,5 @@
+TODO
+  
+  * port autoconf work to cmake
+  * test in diferent platforms
+  * can check flex version ? less that 2.5.4 not allowed -> http://www.php.net/anoncvs.php#buildconf_fail

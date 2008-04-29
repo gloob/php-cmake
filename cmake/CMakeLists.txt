@@ -25,6 +25,27 @@ MESSAGE("CMAKE_ROOT: ${CMAKE_ROOT}")
 MESSAGE("CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH}")
 
 
+
+
+
+# do the configure checks
+include(ConfigureChecks.cmake)
+
+
+
+
+
+
+configure_file(main/php_config.h.cmake ${PHP_SOURCE_DIR}/main/php_config.h @ONLY)
+
+if(WIN32)
+  configure_file(TSRM/tsrm_config.w32.h ${PHP_SOURCE_DIR}/TSRM/tsrm_config.h COPYONLY)
+else(WIN32)
+  configure_file(TSRM/tsrm_config.h.cmake ${PHP_SOURCE_DIR}/TSRM/tsrm_config.h @ONLY)
+endif(WIN32)
+
+
+
 ADD_SUBDIRECTORY(TSRM)
 ADD_SUBDIRECTORY(Zend)
 ADD_SUBDIRECTORY(main)

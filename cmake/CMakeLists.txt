@@ -37,7 +37,7 @@ include(ConfigureChecks.cmake)
 
 
 configure_file(main/php_config.h.cmake ${PHP_SOURCE_DIR}/main/php_config.h @ONLY)
-configure_file(Zend/zend_config.h.cmake ${PHP_SOURCE_DIR}Zend/zend_config.h @ONLY)
+configure_file(Zend/zend_config.h.cmake ${PHP_SOURCE_DIR}/Zend/zend_config.h @ONLY)
 
 if(WIN32)
   configure_file(TSRM/tsrm_config.w32.h ${PHP_SOURCE_DIR}/TSRM/tsrm_config.h COPYONLY)

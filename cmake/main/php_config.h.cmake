@@ -2122,40 +2122,40 @@
 #cmakedefine ROXEN_USE_ZTS 1
 
 /* The size of `char', as computed by sizeof. */
-#cmakedefine SIZEOF_CHAR 1
+#cmakedefine SIZEOF_CHAR @SIZEOF_CHAR@
 
 /* The size of `char *', as computed by sizeof. */
-#cmakedefine SIZEOF_CHAR_P 1
+#cmakedefine SIZEOF_CHAR_P @SIZEOF_CHAR_P@
 
 /* The size of `int', as computed by sizeof. */
-#cmakedefine SIZEOF_INT 1
+#cmakedefine SIZEOF_INT @SIZEOF_INT@
 
 /* Size of intmax_t */
-#cmakedefine SIZEOF_INTMAX_T 1
+#cmakedefine SIZEOF_INTMAX_T @SIZEOF_INTMAX_T@
 
 /* The size of `long', as computed by sizeof. */
-#cmakedefine SIZEOF_LONG 1
+#cmakedefine SIZEOF_LONG @SIZEOF_LONG@
 
 /* The size of `long int', as computed by sizeof. */
-#cmakedefine SIZEOF_LONG_INT 1
+#cmakedefine SIZEOF_LONG_INT @SIZEOF_LONG_INT@
 
 /* The size of `long long', as computed by sizeof. */
-#cmakedefine SIZEOF_LONG_LONG 1
+#cmakedefine SIZEOF_LONG_LONG @SIZEOF_LONG_LONG@
 
 /* The size of `long long int', as computed by sizeof. */
-#cmakedefine SIZEOF_LONG_LONG_INT 1
+#cmakedefine SIZEOF_LONG_LONG_INT @SIZEOF_LONG_LONG_INT@
 
 /* Size of ptrdiff_t */
-#cmakedefine SIZEOF_PTRDIFF_T 1
+#cmakedefine SIZEOF_PTRDIFF_T @SIZEOF_PTRDIFF_T@
 
 /* The size of `short', as computed by sizeof. */
-#cmakedefine SIZEOF_SHORT 1
+#cmakedefine SIZEOF_SHORT @SIZEOF_SHORT@
 
 /* The size of `size_t', as computed by sizeof. */
-#cmakedefine SIZEOF_SIZE_T 1
+#cmakedefine SIZEOF_SIZE_T @SIZEOF_SIZE_T@
 
 /* Size of ssize_t */
-#cmakedefine SIZEOF_SSIZE_T 1
+#cmakedefine SIZEOF_SSIZE_T @SIZEOF_SSIZE_T@
 
 /* */
 #cmakedefine SOLARIS 1

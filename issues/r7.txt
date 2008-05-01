@@ -1,0 +1,17 @@
+* Resolved r4
+* Need to resolve this: 
+[ 10%] Building C object Zend/CMakeFiles/Zend.dir/zend.o
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php5/Zend/zend.c:1144: error: only weak aliases are supported in this configuration
+make[2]: *** [Zend/CMakeFiles/Zend.dir/zend.o] Error 1
+make[1]: *** [Zend/CMakeFiles/Zend.dir/all] Error 2
+make: *** [all] Error 2
+
+* Tasks
+  - platform detection
+  - how to manage different files between php5, php6 and future.
+  - try to implement automatic autoheader/autoconf *.in to cmake.
+  - user params
+  - win32 tests
+  - library checks and links
+  - manage dependencies
+  - feed TODO

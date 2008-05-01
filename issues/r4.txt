@@ -1,0 +1,124 @@
+doing make present this error... don't seem to appear via autotools, related bugs:
+
+http://bugs.php.net/bug.php?id=28250&edit=1
+http://bugs.php.net/bug.php?id=28157
+http://bugs.php.net/bug.php?id=28193
+
+
+
+-- cutted
+dendrita:build gloob$ make
+Scanning dependencies of target TSRM
+[  1%] Building C object TSRM/CMakeFiles/TSRM.dir/TSRM.o
+[  2%] Building C object TSRM/CMakeFiles/TSRM.dir/tsrm_nw.o
+[  4%] Building C object TSRM/CMakeFiles/TSRM.dir/tsrm_strtok_r.o
+[  5%] Building C object TSRM/CMakeFiles/TSRM.dir/tsrm_virtual_cwd.o
+Linking C static library libTSRM.a
+ranlib: file: libTSRM.a(TSRM.o) has no symbols
+ranlib: file: libTSRM.a(tsrm_nw.o) has no symbols
+/usr/bin/ranlib: file: libTSRM.a(TSRM.o) has no symbols
+/usr/bin/ranlib: file: libTSRM.a(tsrm_nw.o) has no symbols
+[  5%] Built target TSRM
+[  7%] [BISON][zend] Building parser with bison 2.3
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_language_parser.y:270.9-247: warning: unused value: $4
+[  8%] [BISON][ini_] Building parser with bison 2.3
+Scanning dependencies of target Zend
+[ 10%] Building C object Zend/CMakeFiles/Zend.dir/zend.o
+In file included from /Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.h:284,
+                 from /Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:22:
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:42: error: syntax error before '*' token
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:42: error: 'ulong' declared as function returning a function
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:60: error: field 'h' declared as a function
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:75: error: field 'nNextFreeElement' declared as a function
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:92: error: field 'h' declared as a function
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:106: error: syntax error before 'hash_func_t'
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:107: error: syntax error before 'hash_func_t'
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:108: error: syntax error before 'hash_func_t'
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:109: error: syntax error before 'hash_func_t'
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:203: error: 'zend_get_hash_value' declared as function returning a function
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:204: error: 'zend_u_get_hash_value' declared as function returning a function
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:225: error: 'zend_hash_next_free_element' declared as function returning a function
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:242: error: field 'h' declared as a function
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:316: error: 'zend_inline_hash_func' declared as function returning a function
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h: In function 'zend_inline_hash_func':
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:317: error: invalid storage class for function 'hash'
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:317: error: function 'hash' is initialized like a variable
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:321: error: invalid operands to binary <<
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:322: error: invalid operands to binary <<
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:323: error: invalid operands to binary <<
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:324: error: invalid operands to binary <<
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:325: error: invalid operands to binary <<
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:326: error: invalid operands to binary <<
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:327: error: invalid operands to binary <<
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:328: error: invalid operands to binary <<
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:331: error: invalid operands to binary <<
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:332: error: invalid operands to binary <<
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:333: error: invalid operands to binary <<
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:334: error: invalid operands to binary <<
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:335: error: invalid operands to binary <<
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:336: error: invalid operands to binary <<
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:337: error: invalid operands to binary <<
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:341: warning: return makes integer from pointer without a cast
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:341: warning: function returns address of local variable
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:317: error: nested function 'hash' declared but never defined
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h: At top level:
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:347: error: 'zend_hash_func' declared as function returning a function
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_hash.h:348: error: 'zend_u_hash_func' declared as function returning a function
+In file included from /Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.h:285,
+                 from /Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:22:
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_ts_hash.h:40: error: syntax error before 'hash_func_t'
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_ts_hash.h:41: error: syntax error before 'hash_func_t'
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_ts_hash.h:87: error: 'zend_ts_get_hash_value' declared as function returning a function
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_ts_hash.h:110: error: 'zend_ts_hash_func' declared as function returning a function
+In file included from /Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.h:427,
+                 from /Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:22:
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_iterators.h:57: error: field 'index' declared as a function
+In file included from /Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.h:778,
+                 from /Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:22:
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_operators.h:46:2: error: #error "Unknown SIZEOF_LONG"
+In file included from /Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_extensions.h:25,
+                 from /Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:23:
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_compile.h:85: error: field 'extended_value' declared as a function
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_compile.h:161: error: field 'h' declared as a function
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_compile.h:183: error: field 'hash_value' declared as a function
+In file included from /Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_globals.h:31,
+                 from /Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_compile.h:329,
+                 from /Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_extensions.h:25,
+                 from /Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:23:
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_ptr_stack.h: In function 'zend_ptr_stack_3_push':
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_ptr_stack.h:61: warning: pointer/integer type mismatch in conditional expression
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_ptr_stack.h: In function 'zend_ptr_stack_2_push':
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_ptr_stack.h:75: warning: pointer/integer type mismatch in conditional expression
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_ptr_stack.h: In function 'zend_ptr_stack_push':
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend_ptr_stack.h:101: warning: pointer/integer type mismatch in conditional expression
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c: In function 'zend_make_printable_zval':
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:400: error: 'MAX_LENGTH_OF_LONG' undeclared (first use in this function)
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:400: error: (Each undeclared identifier is reported only once
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:400: error: for each function it appears in.)
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c: In function 'register_standard_class':
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:680: warning: incompatible implicit declaration of built-in function 'calloc'
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c: In function 'zval_copy_persistent':
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:718: warning: incompatible implicit declaration of built-in function 'malloc'
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c: In function 'function_to_unicode':
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:744: warning: incompatible implicit declaration of built-in function 'malloc'
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:752: warning: incompatible implicit declaration of built-in function 'malloc'
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c: In function 'property_info_to_unicode':
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:777: warning: incompatible implicit declaration of built-in function 'malloc'
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:781: warning: assignment makes pointer from integer without a cast
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c: In function 'const_to_unicode':
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:797: warning: incompatible implicit declaration of built-in function 'malloc'
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:805: warning: incompatible implicit declaration of built-in function 'malloc'
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c: In function 'class_to_unicode':
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:817: warning: incompatible implicit declaration of built-in function 'malloc'
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c: In function 'zend_startup':
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:1104: warning: incompatible implicit declaration of built-in function 'malloc'
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c: In function '_zend_bailout':
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:1291: warning: incompatible implicit declaration of built-in function 'exit'
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c: In function 'zend_append_version_info':
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:1312: warning: incompatible implicit declaration of built-in function 'malloc'
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c: At top level:
+/Users/gloob/work/self/gsoc/php-cmake/trunk/src/php6/Zend/zend.c:1659: error: only weak aliases are supported in this configuration
+make[2]: *** [Zend/CMakeFiles/Zend.dir/zend.o] Error 1
+make[1]: *** [Zend/CMakeFiles/Zend.dir/all] Error 2
+make: *** [all] Error 2
+

@@ -85,9 +85,9 @@ SET(main_library_HDRS
     win95nt.h
 )
 
-CONFIGURE_FILE(build-defs.h.in ${CMAKE_BINARY_DIR}/build-defs.h)
-CONFIGURE_FILE(internal_functions.c.in ${CMAKE_BINARY_DIR}/internal_functions.c)
-#CONFIGURE_FILE(php_config.h.in ${CMAKE_BINARY_DIR}/php_config.h)
+CONFIGURE_FILE(build-defs.h.in ${CMAKE_SOURCE_DIR}/build-defs.h)
+CONFIGURE_FILE(internal_functions.c.in ${CMAKE_SOURCE_DIR}/internal_functions.c)
+#CONFIGURE_FILE(php_config.h.in ${CMAKE_SOURCE_DIR}/php_config.h)
 
 
 # actual target:

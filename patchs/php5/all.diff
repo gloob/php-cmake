@@ -1,0 +1,63 @@
+Index: Zend/zend.c
+===================================================================
+RCS file: /repository/ZendEngine2/zend.c,v
+retrieving revision 1.308.2.12.2.35.2.18
+diff -u -r1.308.2.12.2.35.2.18 zend.c
+--- Zend/zend.c	29 Apr 2008 08:15:16 -0000	1.308.2.12.2.35.2.18
++++ Zend/zend.c	2 May 2008 01:41:00 -0000
+@@ -1139,7 +1139,7 @@
+ 	}
+ }
+ /* }}} */
+-
++#define DARWIN
+ #if defined(__GNUC__) && !defined(__INTEL_COMPILER) && !defined(DARWIN) && !defined(__hpux) && !defined(_AIX) && !defined(__osf__)
+ void zend_error_noreturn(int type, const char *format, ...) __attribute__ ((alias("zend_error"),noreturn));
+ #endif
+Index: Zend/zend_arg_defs.c
+===================================================================
+RCS file: /repository/ZendEngine2/zend_arg_defs.c,v
+retrieving revision 1.2.2.2.2.2.2.1
+diff -u -r1.2.2.2.2.2.2.1 zend_arg_defs.c
+--- Zend/zend_arg_defs.c	31 Dec 2007 07:17:04 -0000	1.2.2.2.2.2.2.1
++++ Zend/zend_arg_defs.c	2 May 2008 01:41:00 -0000
+@@ -18,6 +18,8 @@
+ 
+ /* $Id: zend_arg_defs.c,v 1.2.2.2.2.2.2.1 2007/12/31 07:17:04 sebastian Exp $ */
+ 
++#include "Zend_API.h"
++
+ ZEND_BEGIN_ARG_INFO(first_arg_force_ref, 0)
+ 	ZEND_ARG_PASS_INFO(1)
+ ZEND_END_ARG_INFO();
+Index: Zend/zend_constants.c
+===================================================================
+RCS file: /repository/ZendEngine2/zend_constants.c,v
+retrieving revision 1.71.2.5.2.7.2.9
+diff -u -r1.71.2.5.2.7.2.9 zend_constants.c
+--- Zend/zend_constants.c	23 Feb 2008 17:06:19 -0000	1.71.2.5.2.7.2.9
++++ Zend/zend_constants.c	2 May 2008 01:41:00 -0000
+@@ -146,6 +146,7 @@
+ 
+ 		c.name = zend_strndup(ZEND_STRL("ZEND_DEBUG_BUILD"));
+ 		c.name_len = sizeof("ZEND_DEBUG_BUILD");
++#define ZEND_DEBUG 1
+ 		c.value.value.lval = ZEND_DEBUG;
+ 		c.value.type = IS_BOOL;
+ 		zend_register_constant(&c TSRMLS_CC);
+Index: Zend/zend_static_allocator.c
+===================================================================
+RCS file: /repository/ZendEngine2/zend_static_allocator.c,v
+retrieving revision 1.13.2.1.2.1.2.1
+diff -u -r1.13.2.1.2.1.2.1 zend_static_allocator.c
+--- Zend/zend_static_allocator.c	31 Dec 2007 07:17:04 -0000	1.13.2.1.2.1.2.1
++++ Zend/zend_static_allocator.c	2 May 2008 01:41:00 -0000
+@@ -18,6 +18,8 @@
+ 
+ /* $Id: zend_static_allocator.c,v 1.13.2.1.2.1.2.1 2007/12/31 07:17:04 sebastian Exp $ */
+ 
++  #include <stdlib.h>
++
+ #include "zend_static_allocator.h"
+ 
+ /* Not checking emalloc() and erealloc() return values as they are supposed to bailout */

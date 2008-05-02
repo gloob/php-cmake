@@ -5,18 +5,39 @@
 MESSAGE("BEFORE cmaking of PHP ${PHP_VERSION}")
 
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6.0 FATAL_ERROR)
+
 PROJECT(PHP)
 
+#SET(CMAKE_MODULE_PATH ${PHP_SOURCE_DIR}/CMake ${CMAKE_MODULE_PATH})
+# Another way
+LIST(APPEND CMAKE_MODULE_PATH ${PHP_SOURCE_DIR}/CMake)
+
+# Includes 
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
+
+
+# Do the configure checks.
+INCLUDE(ConfigureChecks.cmake)
+
+# Process configure files.
+INCLUDE(ConfigureFileIn)
+
+CONFIGURE_FILE_IN(php_config.h.cmake php_config.h main)
+CONFIGURE_FILE_IN(zend_config.h.cmake zend_config.h Zend)
+
+
+
+# Constants setting
 SET(PHP_VERSION_MAJOR 6)
 SET(PHP_VERSION_MINOR 0)
 SET(PHP_VERSION_SUBMINOR 0)
 SET(PHP_VERSION "${PHP_VERSION_MAJOR}.${PHP_VERSION_MINOR}.${PHP_VERSION_SUBMINOR}")
 
+
+
 MESSAGE("START cmaking of PHP ${PHP_VERSION}")
 
-SET(CMAKE_MODULE_PATH ${PHP_SOURCE_DIR}/CMake ${CMAKE_MODULE_PATH})
-# Another way
-LIST(APPEND CMAKE_MODULE_PATH ${PHP_SOURCE_DIR}/CMake)
 
 MESSAGE("info: AUTOVARS created by CMAKE")
 MESSAGE("PHP_SOURCE_DIR: ${PHP_SOURCE_DIR}")
@@ -25,19 +46,14 @@ MESSAGE("CMAKE_ROOT: ${CMAKE_ROOT}")
 MESSAGE("CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH}")
 
 
-
-
-
-# do the configure checks
-include(ConfigureChecks.cmake)
-
+# User parameters
+SET(ZEND_DEBUG 1)
 
 
 
 
 
-configure_file(main/php_config.h.cmake ${PHP_SOURCE_DIR}/main/php_config.h @ONLY)
-configure_file(Zend/zend_config.h.cmake ${PHP_SOURCE_DIR}/Zend/zend_config.h @ONLY)
+#configure_file(Zend/zend_config.h.cmake ${PHP_SOURCE_DIR}/Zend/zend_config.h @ONLY)
 
 if(WIN32)
   configure_file(TSRM/tsrm_config.w32.h ${PHP_SOURCE_DIR}/TSRM/tsrm_config.h COPYONLY)
@@ -47,6 +63,6 @@ endif(WIN32)
 
 
 
-ADD_SUBDIRECTORY(TSRM)
 ADD_SUBDIRECTORY(Zend)
+ADD_SUBDIRECTORY(TSRM)
 ADD_SUBDIRECTORY(main)

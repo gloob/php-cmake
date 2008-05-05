@@ -16,7 +16,7 @@ INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR})
 INCLUDE_DIRECTORIES(${PHP_SOURCE_DIR}/TSRM)
 MESSAGE("PHP_SOURCE_DIR: ${PHP_SOURCE_DIR}")
 
-INCLUDE(FindICU)
+
 ## From http://public.kitware.com/Bug/view.php?id=4018
 #INCLUDE(FindFLEX)
 #INCLUDE(FindBISON)
@@ -31,13 +31,6 @@ BISON_TARGET(ini_ ${Zend_SOURCE_DIR}/zend_ini_parser.y ${Zend_SOURCE_DIR}/zend_i
 
 
 SET(PHP_ZEND_LIBRARIES)
-
-if (ICU_FOUND AND ICU_I18N_FOUND)
-#  add_definitions(-DPHP_HAS_ICU=2)
-	MESSAGE("Found ICU: ${ICU_INCLUDE_DIRS}")
-	include_directories(${ICU_INCLUDE_DIRS})
-	set(PHP_ZEND_LIBRARIES ${ICU_LIBRARIES} ${ICU_I18N_LIBRARIES})
-endif (ICU_FOUND AND ICU_I18N_FOUND)
 
 
 # ########## Zend library ##########

@@ -20,10 +20,22 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 # Do the configure checks.
 INCLUDE(ConfigureChecks.cmake)
 
+# Check libs
+if (ICU_FOUND AND ICU_I18N_FOUND)
+#  add_definitions(-DPHP_HAS_ICU=2)
+        MESSAGE("Found ICU: ${ICU_INCLUDE_DIRS}")
+        include_directories(${ICU_INCLUDE_DIRS})
+        set(PHP_ZEND_LIBRARIES ${ICU_LIBRARIES} ${ICU_I18N_LIBRARIES})
+endif (ICU_FOUND AND ICU_I18N_FOUND)
+
+
 # Process configure files.
 INCLUDE(ConfigureFileIn)
 
+# Configure in main zone
 CONFIGURE_FILE_IN(php_config.h.cmake php_config.h main)
+CONFIGURE_FILE_IN(build-defs.h.cmake build-defs.h main)
+# Configure in Zend zone
 CONFIGURE_FILE_IN(zend_config.h.cmake zend_config.h Zend)
 
 

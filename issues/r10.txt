@@ -1,0 +1,2 @@
+Inconsistent naming, build-defs.h.cmake vs php_config.h.cmake
+

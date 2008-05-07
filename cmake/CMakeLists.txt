@@ -4,7 +4,7 @@
 # $Id$
 MESSAGE("BEFORE cmaking of PHP ${PHP_VERSION}")
 
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6.0 FATAL_ERROR)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.4.0 FATAL_ERROR)
 
 PROJECT(PHP)
 
@@ -16,9 +16,8 @@ LIST(APPEND CMAKE_MODULE_PATH ${PHP_SOURCE_DIR}/CMake)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 
-
-# Do the configure checks.
-INCLUDE(ConfigureChecks.cmake)
+# Process configure files.
+INCLUDE(ConfigureFileIn)
 
 # Check libs
 if (ICU_FOUND AND ICU_I18N_FOUND)
@@ -29,12 +28,30 @@ if (ICU_FOUND AND ICU_I18N_FOUND)
 endif (ICU_FOUND AND ICU_I18N_FOUND)
 
 
-# Process configure files.
-INCLUDE(ConfigureFileIn)
+# User parameters
+SET(ZEND_DEBUG 1)
+
+# PHP defined (where?)
+## if test "$PHP_SHORT_TAGS" = "yes"; then
+SET(DEFAULT_SHORT_OPEN_TAG 1)
+
+## need to apply some logic (development, production, linux, etc...) more info at configure.in
+## try to resolve!
+SET(EXPANDED_EXTENSION_DIR ${CMAKE_CURRENT_BINARY_DIR})
+SET(EXPANDED_INCLUDE_PATH ${CMAKE_CURRENT_BINARY_DIR})
+SET(PHP_OS "gloobOS")
+SET(EXPANDED_PEAR_INSTALLDIR ${CMAKE_CURRENT_BINARY_DIR})
+
+CONFIGURE_FILE_IN(build-defs.h.cmake build-defs.h main)
+
+LIST(APPEND CMAKE_REQUIRED_INCLUDES ${PHP_BINARY_DIR}/main)
+MESSAGE(cmake_required_include: ${CMAKE_REQUIRED_INCLUDES})
+
+# Do the configure checks.
+INCLUDE(ConfigureChecks.cmake)
 
 # Configure in main zone
 CONFIGURE_FILE_IN(php_config.h.cmake php_config.h main)
-CONFIGURE_FILE_IN(build-defs.h.cmake build-defs.h main)
 # Configure in Zend zone
 CONFIGURE_FILE_IN(zend_config.h.cmake zend_config.h Zend)
 
@@ -56,11 +73,6 @@ MESSAGE("PHP_SOURCE_DIR: ${PHP_SOURCE_DIR}")
 MESSAGE("PHP_CMAKE_DIR: ${PHP_CMAKE_DIR}")
 MESSAGE("CMAKE_ROOT: ${CMAKE_ROOT}")
 MESSAGE("CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH}")
-
-
-# User parameters
-SET(ZEND_DEBUG 1)
-
 
 
 

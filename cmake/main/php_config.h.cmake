@@ -2074,7 +2074,7 @@
 #cmakedefine PHP_OCI8_HAVE_COLLECTIONS 1
 
 /* uname output */
-#cmakedefine PHP_OS 1
+#cmakedefine PHP_OS "@PHP_OS@"
 
 /* */
 #cmakedefine PHP_PDO_OCI_CLIENT_VERSION 1

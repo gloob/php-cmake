@@ -74,9 +74,9 @@ SET(Zend_library_SRCS
     zend_static_allocator.c
     zend_stream.c
     zend_strtod.c
-    zend_strtol.c
+#    zend_strtol.c
     zend_ts_hash.c
-    zend_unicode.c
+#    zend_unicode.c
     zend_variables.c
 )
 
@@ -127,7 +127,7 @@ SET(Zend_library_HDRS
     zend_strtod.h
     zend_ts_hash.h
     zend_types.h
-    zend_unicode.h
+#    zend_unicode.h
     zend_variables.h
     zend_vm.h
     zend_vm_def.h

@@ -26,7 +26,7 @@ SET(main_library_SRCS
     fopen_wrappers.c
     getopt.c
 ##    internal_functions.c
-    internal_functions_cli.c
+##    internal_functions_cli.c
 #    internal_functions_nw.c
 #    internal_functions_win32.c
     main.c
@@ -58,7 +58,7 @@ SET(main_library_HDRS
     logos.h
     php.h
     php_compat.h
-    php_config.h
+#    php_config.h
     php_content_types.h
     php_getopt.h
     php_globals.h
@@ -83,10 +83,7 @@ SET(main_library_HDRS
     win95nt.h
 )
 
-#CONFIGURE_FILE(build-defs.h.in ${CMAKE_SOURCE_DIR}/build-defs.h)
 CONFIGURE_FILE(internal_functions.c.in ${CMAKE_SOURCE_DIR}/internal_functions.c)
-#CONFIGURE_FILE(php_config.h.in ${CMAKE_SOURCE_DIR}/php_config.h)
-
 
 # actual target:
 ADD_LIBRARY(main ${main_library_SRCS} ${main_library_HDRS})

@@ -1,9 +1,8 @@
-/* AUTOMATICALLY GENERATED !! */
 /*                                                                -*- C -*-
    +----------------------------------------------------------------------+
    | PHP Version 5                                                        |
    +----------------------------------------------------------------------+
-   | Copyright (c) 1997-2006 The PHP Group                                |
+   | Copyright (c) 1997-2007 The PHP Group                                |
    +----------------------------------------------------------------------+
    | This source file is subject to version 3.01 of the PHP license,      |
    | that is bundled with this package in the file LICENSE, and is        |
@@ -17,7 +16,7 @@
    +----------------------------------------------------------------------+
 */
 
-/* $Id: build-defs.h.in,v 1.20 2008/03/25 02:25:03 sixd Exp $ */
+/* $Id: build-defs.h.in,v 1.15.2.2.2.2.2.1 2008/03/25 02:00:26 sixd Exp $ */
 
 #define CONFIGURE_COMMAND "@CONFIGURE_COMMAND@"
 #define PHP_ADA_INCLUDE		""
@@ -76,6 +75,7 @@
 #define PHP_LDAP_LIBS		""
 #define PHP_BIRDSTEP_INCLUDE     ""
 #define PHP_BIRDSTEP_LIBS        ""
+#define PEAR_INSTALLDIR         "@EXPANDED_PEAR_INSTALLDIR@"
 #define PHP_INCLUDE_PATH	"@INCLUDE_PATH@"
 #define PHP_EXTENSION_DIR       "@EXPANDED_EXTENSION_DIR@"
 #define PHP_PREFIX              "@prefix@"
@@ -87,4 +87,3 @@
 #define PHP_CONFIG_FILE_PATH    "@EXPANDED_PHP_CONFIG_FILE_PATH@"
 #define PHP_CONFIG_FILE_SCAN_DIR    "@EXPANDED_PHP_CONFIG_FILE_SCAN_DIR@"
 #define PHP_SHLIB_SUFFIX        "@SHLIB_DL_SUFFIX_NAME@"
-

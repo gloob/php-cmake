@@ -13,7 +13,9 @@ CHECK_INCLUDE_FILES(applicationservices/applicationservices.h HAVE_APPLICATIONSE
 CHECK_INCLUDE_FILES(arpa/inet.h HAVE_ARPA_INET_H)
 CHECK_INCLUDE_FILES(arpa/nameser.h HAVE_ARPA_NAMESER_H)
 CHECK_INCLUDE_FILES(assert.h HAVE_ASSERT_H)
-CHECK_INCLUDE_FILES(build/defs.h HAVE_BUILD_DEFS_H)
+
+CHECK_INCLUDE_FILES(build-defs.h HAVE_BUILD_DEFS_H)
+
 CHECK_INCLUDE_FILES(cli0cli.h HAVE_CLI0CLI_H)
 CHECK_INCLUDE_FILES(cli0core.h HAVE_CLI0CORE_H)
 CHECK_INCLUDE_FILES(cli0defs.h HAVE_CLI0DEFS_H)
@@ -106,7 +108,7 @@ CHECK_INCLUDE_FILES(wchar.h HAVE_WCHAR_H)
 CHECK_INCLUDE_FILES(xmlparse.h HAVE_XMLPARSE_H)
 CHECK_INCLUDE_FILES(xmltok.h HAVE_XMLTOK_H)
 
-# Check standard types and type sizes
+## Check standard types and type sizes
 
 check_type_size("char" SIZEOF_CHAR)
 check_type_size("char *" SIZEOF_CHAR_P)
@@ -120,10 +122,11 @@ check_type_size("short" SIZEOF_SHORT)
 check_type_size("size_t" SIZEOF_SIZE_T)
 check_type_size("ssize_t" SIZEOF_SSIZE_T)
 
-if(SIZEOF_LONG)
-  set(ulong "unsigned long")
-endif(SIZEOF_LONG)
+check_type_size("ulong" SIZEOF_ULONG)
 
+if(NOT SIZEOF_ULONG)
+  set(ulong "unsigned long")
+endif(NOT SIZEOF_ULONG)
 
 
 #check_type_size("unsigned long" SIZEOF_LONG)
@@ -139,3 +142,5 @@ endif(SIZEOF_LONG)
 #elseif(SIZEOF_LONG EQUAL 4)
 #  set(ulong "unsigned long")
 #endif(HAVE_UINT32)
+
+## Check libs

@@ -1,4 +1,12 @@
-# ########## Project setup ##########
+## CMake Zend File
+##
+## PHP License
+##
+## Author: Alejandro Leiva <gloob@php.net>
+##
+## $Id$
+
+
 PROJECT(Zend)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.4.5)
 
@@ -6,78 +14,91 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.4.5)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 
+
 # ######### General setup ##########
 MESSAGE("Zend_SOURCE_DIR: ${Zend_SOURCE_DIR}")
 MESSAGE("CMAKE_SOURCE_DIR: ${CMAKE_SOURCE_DIR}")
 INCLUDE_DIRECTORIES(${Zend_SOURCE_DIR})
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR})
 
-## Automatic way ?
+set(BISON_MINIMAL_VERSION "2.3")
+
+## Automatic way ? dependency ?
 INCLUDE_DIRECTORIES(${PHP_SOURCE_DIR}/TSRM)
 MESSAGE("PHP_SOURCE_DIR: ${PHP_SOURCE_DIR}")
 
 
-## From http://public.kitware.com/Bug/view.php?id=4018
-#INCLUDE(FindFLEX)
-#INCLUDE(FindBISON)
+find_package(BISON)
+find_package(RE2C)
 
-FIND_PACKAGE(BISON)
+if(BISON_VERSION GREATER ${BISON_MINIMAL_VERSION} OR BISON_VERSION EQUAL ${BISON_MINIMAL_VERSION})
+  message(FATAL_ERROR bison version should be greater than 2.3)
+endif(BISON_VERSION GREATER ${BISON_MINIMAL_VERSION} OR BISON_VERSION EQUAL ${BISON_MINIMAL_VERSION})
 
-# QUESTION: FIND_PACKAGE(NAME) == INCLUDE(FindNAME) ?
 
+# Language parser/scanner rules
+find_file(ZEND_LANGUAGE_SCANNER "zend_language_scanner.c" PATHS ${Zend_SOURCE_DIR})
+if(NOT ZEND_LANGUAGE_SCANNER)
+  message("Regenerating zend_language_scanner")
+  RE2C_TARGET(${Zend_SOURCE_DIR}/zend_language_scanner.l ${Zend_SOURCE_DIR}/zend_language_scanner.c "--case-inverted -cbdFt ${Zend_SOURCE_DIR}/zend_language_scanner_defs.h")
+endif(NOT ZEND_LANGUAGE_SCANNER)
+
+## Regenerate always ? some options force ?
 BISON_TARGET(zend ${Zend_SOURCE_DIR}/zend_language_parser.y ${Zend_SOURCE_DIR}/zend_language_parser.c)
-BISON_TARGET(ini_ ${Zend_SOURCE_DIR}/zend_ini_parser.y ${Zend_SOURCE_DIR}/zend_ini_parser.c)
-#FLEX_TARGET(zend ${Zend_SOURCE_DIR}/zend_language_parser.l ${Zend_SOURCE_DIR}/zend_langugae_parser.c)
 
+# INI parser/scanner rules
+BISON_TARGET(ini_ ${Zend_SOURCE_DIR}/zend_ini_parser.y ${Zend_SOURCE_DIR}/zend_ini_parser.c)
+
+find_file(ZEND_INI_SCANNER "zend_ini_scanner.c" PATHS ${Zend_SOURCE_DIR})
+if(NOT ZEND_INI_SCANNER)
+  message("Regenerating zend_ini_scanner")
+  RE2C_TARGET(${Zend_SOURCE_DIR}/zend_ini_scanner.l ${Zend_SOURCE_DIR}/zend_ini_scanner.c "--case-inverted -cbdFt ${Zend_SOURCE_DIR}/zend_ini_scanner_defs.h")
+endif(NOT ZEND_INI_SCANNER)
 
 SET(PHP_ZEND_LIBRARIES)
 
 
+# Linux sources...
+
 # ########## Zend library ##########
 # Sources:
 SET(Zend_library_SRCS
-    zend.c
-    zend_alloc.c
-    zend_API.c
-    zend_arg_defs.c
-    zend_builtin_functions.c
-    zend_compile.c
-    zend_constants.c
-    zend_default_classes.c
-    zend_dynamic_array.c
-    zend_exceptions.c
-    zend_execute.c
-    zend_execute_API.c
-    zend_extensions.c
-    zend_gc.c
-    zend_hash.c
-    zend_highlight.c
-    zend_indent.c
-    zend_ini.c
-    zend_ini_parser.c
-    zend_ini_scanner.c
-    zend_interfaces.c
-    zend_iterators.c
-    zend_language_parser.c
-    zend_language_scanner.c
-    zend_list.c
-    zend_llist.c
-    zend_object_handlers.c
-    zend_objects.c
-    zend_objects_API.c
-    zend_opcode.c
-    zend_operators.c
-    zend_ptr_stack.c
-    zend_qsort.c
-    zend_sprintf.c
-    zend_stack.c
-    zend_static_allocator.c
-    zend_stream.c
-    zend_strtod.c
-#    zend_strtol.c
-    zend_ts_hash.c
-#    zend_unicode.c
-    zend_variables.c
+
+  zend_alloc.c
+  zend_compile.c
+  zend_constants.c
+  zend_dynamic_array.c
+  zend_execute.c
+  zend_execute_API.c
+  zend_highlight.c
+  zend_llist.c
+  zend_opcode.c
+  zend_operators.c
+  zend_ptr_stack.c
+  zend_stack.c
+  zend_variables.c
+  zend.c
+  zend_API.c
+  zend_extensions.c
+  zend_hash.c
+  zend_list.c
+  zend_indent.c
+  zend_builtin_functions.c
+  zend_sprintf.c
+  zend_ini.c
+  zend_qsort.c
+  zend_objects.c
+  zend_object_handlers.c
+  zend_objects_API.c
+  zend_ts_hash.c
+  zend_stream.c
+  zend_default_classes.c
+  zend_iterators.c
+  zend_interfaces.c
+  zend_exceptions.c
+  zend_strtod.c
+  zend_gc.c
+
 )
 
 # Headers:
@@ -127,7 +148,6 @@ SET(Zend_library_HDRS
     zend_strtod.h
     zend_ts_hash.h
     zend_types.h
-#    zend_unicode.h
     zend_variables.h
     zend_vm.h
     zend_vm_def.h

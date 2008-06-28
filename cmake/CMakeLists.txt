@@ -1,7 +1,11 @@
-# 
-# CMake rules for PHP
-#
-# $Id$
+## CMake rules for PHP
+##
+## PHP License
+##
+## Author: Alejandro Leiva <gloob@php.net>
+##
+## $Id$
+
 MESSAGE("BEFORE cmaking of PHP ${PHP_VERSION}")
 
 CMAKE_MINIMUM_REQUIRED(VERSION 2.4.0 FATAL_ERROR)
@@ -42,7 +46,7 @@ SET(EXPANDED_INCLUDE_PATH ${CMAKE_CURRENT_BINARY_DIR})
 SET(PHP_OS "gloobOS")
 SET(EXPANDED_PEAR_INSTALLDIR ${CMAKE_CURRENT_BINARY_DIR})
 
-CONFIGURE_FILE_IN(build-defs.h.cmake build-defs.h main)
+configure_file_in(build-defs.h.cmake build-defs.h DIRECTORY main)
 
 LIST(APPEND CMAKE_REQUIRED_INCLUDES ${PHP_BINARY_DIR}/main)
 MESSAGE(cmake_required_include: ${CMAKE_REQUIRED_INCLUDES})
@@ -51,10 +55,9 @@ MESSAGE(cmake_required_include: ${CMAKE_REQUIRED_INCLUDES})
 INCLUDE(ConfigureChecks.cmake)
 
 # Configure in main zone
-CONFIGURE_FILE_IN(php_config.h.cmake php_config.h main)
+configure_file_in(php_config.h.cmake php_config.h DIRECTORY main)
 # Configure in Zend zone
-CONFIGURE_FILE_IN(zend_config.h.cmake zend_config.h Zend)
-
+configure_file_in(zend_config.h.cmake zend_config.h DIRECTORY Zend)
 
 
 # Constants setting

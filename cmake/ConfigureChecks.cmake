@@ -1,112 +1,112 @@
 include(CheckIncludeFiles)
 include(CheckTypeSize) 
-
 include(CMakeDetermineSystem)
+include(CheckFunctionExists)
 
 
 ## Check include files
 
-CHECK_INCLUDE_FILES(alloca.h HAVE_ALLOCA_H)
-CHECK_INCLUDE_FILES(ap/compat.h HAVE_AP_COMPAT_H)
-CHECK_INCLUDE_FILES(ap/config.h HAVE_AP_CONFIG_H)
-CHECK_INCLUDE_FILES(applicationservices/applicationservices.h HAVE_APPLICATIONSERVICES_APPLICATIONSERVICES_H)
-CHECK_INCLUDE_FILES(arpa/inet.h HAVE_ARPA_INET_H)
-CHECK_INCLUDE_FILES(arpa/nameser.h HAVE_ARPA_NAMESER_H)
-CHECK_INCLUDE_FILES(assert.h HAVE_ASSERT_H)
 
-CHECK_INCLUDE_FILES(build-defs.h HAVE_BUILD_DEFS_H)
+check_include_files(ap/compat.h HAVE_AP_COMPAT_H)
+check_include_files(ap/config.h HAVE_AP_CONFIG_H)
+check_include_files(applicationservices/applicationservices.h HAVE_APPLICATIONSERVICES_APPLICATIONSERVICES_H)
+check_include_files(arpa/inet.h HAVE_ARPA_INET_H)
+check_include_files(arpa/nameser.h HAVE_ARPA_NAMESER_H)
+check_include_files(assert.h HAVE_ASSERT_H)
 
-CHECK_INCLUDE_FILES(cli0cli.h HAVE_CLI0CLI_H)
-CHECK_INCLUDE_FILES(cli0core.h HAVE_CLI0CORE_H)
-CHECK_INCLUDE_FILES(cli0defs.h HAVE_CLI0DEFS_H)
-CHECK_INCLUDE_FILES(cli0env.h HAVE_CLI0ENV_H)
-CHECK_INCLUDE_FILES(cli0ext.h HAVE_CLI0EXT_H)
-CHECK_INCLUDE_FILES(crypt.h HAVE_CRYPT_H)
-CHECK_INCLUDE_FILES(default/store.h HAVE_DEFAULT_STORE_H)
-CHECK_INCLUDE_FILES(dirent.h HAVE_DIRENT_H)
-CHECK_INCLUDE_FILES(dlfcn.h HAVE_DLFCN_H)
-CHECK_INCLUDE_FILES(errno.h HAVE_ERRNO_H)
-CHECK_INCLUDE_FILES(fcntl.h HAVE_FCNTL_H)
-CHECK_INCLUDE_FILES(giconv.h HAVE_GICONV_H)
-CHECK_INCLUDE_FILES(grp.h HAVE_GRP_H)
-CHECK_INCLUDE_FILES(ieeefp.h HAVE_IEEEFP_H)
-CHECK_INCLUDE_FILES(inttypes.h HAVE_INTTYPES_H)
-CHECK_INCLUDE_FILES(iodbc.h HAVE_IODBC_H)
-CHECK_INCLUDE_FILES(isql.h HAVE_ISQL_H)
-CHECK_INCLUDE_FILES(isqlext.h HAVE_ISQLEXT_H)
-CHECK_INCLUDE_FILES(langinfo.h HAVE_LANGINFO_H)
-CHECK_INCLUDE_FILES(ldap/sasl.h HAVE_LDAP_SASL_H)
-CHECK_INCLUDE_FILES(ldap/sasl/sasl.h HAVE_LDAP_SASL_SASL_H)
-CHECK_INCLUDE_FILES(librarymanager.h HAVE_LIBRARYMANAGER_H)
-CHECK_INCLUDE_FILES(limits.h HAVE_LIMITS_H)
-CHECK_INCLUDE_FILES(locale.h HAVE_LOCALE_H)
-CHECK_INCLUDE_FILES(mach/o/dyld.h HAVE_MACH_O_DYLD_H)
-CHECK_INCLUDE_FILES(malloc.h HAVE_MALLOC_H)
-CHECK_INCLUDE_FILES(memory.h HAVE_MEMORY_H)
-CHECK_INCLUDE_FILES(monetary.h HAVE_MONETARY_H)
-CHECK_INCLUDE_FILES(ncurses.h HAVE_NCURSES_H)
-CHECK_INCLUDE_FILES(ndir.h HAVE_NDIR_H)
-CHECK_INCLUDE_FILES(netdb.h HAVE_NETDB_H)
-CHECK_INCLUDE_FILES(netinet/in.h HAVE_NETINET_IN_H)
-CHECK_INCLUDE_FILES(netinet/tcp.h HAVE_NETINET_TCP_H)
-CHECK_INCLUDE_FILES(odbc.h HAVE_ODBC_H)
-CHECK_INCLUDE_FILES(odbcsdk.h HAVE_ODBCSDK_H)
-CHECK_INCLUDE_FILES(old/compat.h HAVE_OLD_COMPAT_H)
-CHECK_INCLUDE_FILES(pg/config.h HAVE_PG_CONFIG_H)
-CHECK_INCLUDE_FILES(pwd.h HAVE_PWD_H)
-CHECK_INCLUDE_FILES(resolv.h HAVE_RESOLV_H)
-CHECK_INCLUDE_FILES(signal.h HAVE_SIGNAL_H)
-CHECK_INCLUDE_FILES(sql.h HAVE_SQL_H)
-CHECK_INCLUDE_FILES(sqlcli1.h HAVE_SQLCLI1_H)
-CHECK_INCLUDE_FILES(sqlext.h HAVE_SQLEXT_H)
-CHECK_INCLUDE_FILES(sqltypes.h HAVE_SQLTYPES_H)
-CHECK_INCLUDE_FILES(sqlucode.h HAVE_SQLUCODE_H)
-CHECK_INCLUDE_FILES(sqlunix.h HAVE_SQLUNIX_H)
-CHECK_INCLUDE_FILES(st.h HAVE_ST_H)
-CHECK_INCLUDE_FILES(stdarg.h HAVE_STDARG_H)
-CHECK_INCLUDE_FILES(stdbool.h HAVE_STDBOOL_H)
-CHECK_INCLUDE_FILES(stdint.h HAVE_STDINT_H)
-CHECK_INCLUDE_FILES(stdlib.h HAVE_STDLIB_H)
-CHECK_INCLUDE_FILES(string.h HAVE_STRING_H)
-CHECK_INCLUDE_FILES(strings.h HAVE_STRINGS_H)
-CHECK_INCLUDE_FILES(sys/dir.h HAVE_SYS_DIR_H)
-CHECK_INCLUDE_FILES(sys/file.h HAVE_SYS_FILE_H)
-CHECK_INCLUDE_FILES(sys/ioctl.h HAVE_SYS_IOCTL_H)
-CHECK_INCLUDE_FILES(sys/ipc.h HAVE_SYS_IPC_H)
-CHECK_INCLUDE_FILES(sys/loadavg.h HAVE_SYS_LOADAVG_H)
-CHECK_INCLUDE_FILES(sys/mkdev.h HAVE_SYS_MKDEV_H)
-CHECK_INCLUDE_FILES(sys/mman.h HAVE_SYS_MMAN_H)
-CHECK_INCLUDE_FILES(sys/mount.h HAVE_SYS_MOUNT_H)
-CHECK_INCLUDE_FILES(sys/ndir.h HAVE_SYS_NDIR_H)
-CHECK_INCLUDE_FILES(sys/param.h HAVE_SYS_PARAM_H)
-CHECK_INCLUDE_FILES(sys/poll.h HAVE_SYS_POLL_H)
-CHECK_INCLUDE_FILES(sys/resource.h HAVE_SYS_RESOURCE_H)
-CHECK_INCLUDE_FILES(sys/select.h HAVE_SYS_SELECT_H)
-CHECK_INCLUDE_FILES(sys/socket.h HAVE_SYS_SOCKET_H)
-CHECK_INCLUDE_FILES(sys/stat.h HAVE_SYS_STAT_H)
-CHECK_INCLUDE_FILES(sys/statfs.h HAVE_SYS_STATFS_H)
-CHECK_INCLUDE_FILES(sys/statvfs.h HAVE_SYS_STATVFS_H)
-CHECK_INCLUDE_FILES(sys/sysexits.h HAVE_SYS_SYSEXITS_H)
-CHECK_INCLUDE_FILES(sys/time.h HAVE_SYS_TIME_H)
-CHECK_INCLUDE_FILES(sys/times.h HAVE_SYS_TIMES_H)
-CHECK_INCLUDE_FILES(sys/types.h HAVE_SYS_TYPES_H)
-CHECK_INCLUDE_FILES(sys/un.h HAVE_SYS_UN_H)
-CHECK_INCLUDE_FILES(sys/utsname.h HAVE_SYS_UTSNAME_H)
-CHECK_INCLUDE_FILES(sys/varargs.h HAVE_SYS_VARARGS_H)
-CHECK_INCLUDE_FILES(sys/vfs.h HAVE_SYS_VFS_H)
-CHECK_INCLUDE_FILES(sys/wait.h HAVE_SYS_WAIT_H)
-CHECK_INCLUDE_FILES(sysexits.h HAVE_SYSEXITS_H)
-CHECK_INCLUDE_FILES(syslog.h HAVE_SYSLOG_H)
-CHECK_INCLUDE_FILES(termios.h HAVE_TERMIOS_H)
-CHECK_INCLUDE_FILES(time.h HAVE_TIME_H)
-CHECK_INCLUDE_FILES(tuxmodule.h HAVE_TUXMODULE_H)
-CHECK_INCLUDE_FILES(udbcext.h HAVE_UDBCEXT_H)
-CHECK_INCLUDE_FILES(unistd.h HAVE_UNISTD_H)
-CHECK_INCLUDE_FILES(unix.h HAVE_UNIX_H)
-CHECK_INCLUDE_FILES(utime.h HAVE_UTIME_H)
-CHECK_INCLUDE_FILES(wchar.h HAVE_WCHAR_H)
-CHECK_INCLUDE_FILES(xmlparse.h HAVE_XMLPARSE_H)
-CHECK_INCLUDE_FILES(xmltok.h HAVE_XMLTOK_H)
+check_include_files(build-defs.h HAVE_BUILD_DEFS_H)
+
+check_include_files(cli0cli.h HAVE_CLI0CLI_H)
+check_include_files(cli0core.h HAVE_CLI0CORE_H)
+check_include_files(cli0defs.h HAVE_CLI0DEFS_H)
+check_include_files(cli0env.h HAVE_CLI0ENV_H)
+check_include_files(cli0ext.h HAVE_CLI0EXT_H)
+check_include_files(crypt.h HAVE_CRYPT_H)
+check_include_files(default/store.h HAVE_DEFAULT_STORE_H)
+check_include_files(dirent.h HAVE_DIRENT_H)
+
+check_include_files(errno.h HAVE_ERRNO_H)
+check_include_files(fcntl.h HAVE_FCNTL_H)
+check_include_files(giconv.h HAVE_GICONV_H)
+check_include_files(grp.h HAVE_GRP_H)
+check_include_files(ieeefp.h HAVE_IEEEFP_H)
+
+check_include_files(iodbc.h HAVE_IODBC_H)
+check_include_files(isql.h HAVE_ISQL_H)
+check_include_files(isqlext.h HAVE_ISQLEXT_H)
+check_include_files(langinfo.h HAVE_LANGINFO_H)
+check_include_files(ldap/sasl.h HAVE_LDAP_SASL_H)
+check_include_files(ldap/sasl/sasl.h HAVE_LDAP_SASL_SASL_H)
+check_include_files(librarymanager.h HAVE_LIBRARYMANAGER_H)
+
+check_include_files(locale.h HAVE_LOCALE_H)
+
+
+check_include_files(memory.h HAVE_MEMORY_H)
+check_include_files(monetary.h HAVE_MONETARY_H)
+check_include_files(ncurses.h HAVE_NCURSES_H)
+check_include_files(ndir.h HAVE_NDIR_H)
+check_include_files(netdb.h HAVE_NETDB_H)
+check_include_files(netinet/in.h HAVE_NETINET_IN_H)
+check_include_files(netinet/tcp.h HAVE_NETINET_TCP_H)
+check_include_files(odbc.h HAVE_ODBC_H)
+check_include_files(odbcsdk.h HAVE_ODBCSDK_H)
+check_include_files(old/compat.h HAVE_OLD_COMPAT_H)
+check_include_files(pg/config.h HAVE_PG_CONFIG_H)
+check_include_files(pwd.h HAVE_PWD_H)
+check_include_files(resolv.h HAVE_RESOLV_H)
+
+check_include_files(sql.h HAVE_SQL_H)
+check_include_files(sqlcli1.h HAVE_SQLCLI1_H)
+check_include_files(sqlext.h HAVE_SQLEXT_H)
+check_include_files(sqltypes.h HAVE_SQLTYPES_H)
+check_include_files(sqlucode.h HAVE_SQLUCODE_H)
+check_include_files(sqlunix.h HAVE_SQLUNIX_H)
+check_include_files(st.h HAVE_ST_H)
+
+check_include_files(stdbool.h HAVE_STDBOOL_H)
+
+
+
+check_include_files(strings.h HAVE_STRINGS_H)
+check_include_files(sys/dir.h HAVE_SYS_DIR_H)
+check_include_files(sys/file.h HAVE_SYS_FILE_H)
+check_include_files(sys/ioctl.h HAVE_SYS_IOCTL_H)
+check_include_files(sys/ipc.h HAVE_SYS_IPC_H)
+check_include_files(sys/loadavg.h HAVE_SYS_LOADAVG_H)
+check_include_files(sys/mkdev.h HAVE_SYS_MKDEV_H)
+check_include_files(sys/mman.h HAVE_SYS_MMAN_H)
+check_include_files(sys/mount.h HAVE_SYS_MOUNT_H)
+check_include_files(sys/ndir.h HAVE_SYS_NDIR_H)
+check_include_files(sys/param.h HAVE_SYS_PARAM_H)
+check_include_files(sys/poll.h HAVE_SYS_POLL_H)
+check_include_files(sys/resource.h HAVE_SYS_RESOURCE_H)
+check_include_files(sys/select.h HAVE_SYS_SELECT_H)
+check_include_files(sys/socket.h HAVE_SYS_SOCKET_H)
+check_include_files(sys/stat.h HAVE_SYS_STAT_H)
+check_include_files(sys/statfs.h HAVE_SYS_STATFS_H)
+check_include_files(sys/statvfs.h HAVE_SYS_STATVFS_H)
+check_include_files(sys/sysexits.h HAVE_SYS_SYSEXITS_H)
+
+check_include_files(sys/times.h HAVE_SYS_TIMES_H)
+
+check_include_files(sys/un.h HAVE_SYS_UN_H)
+check_include_files(sys/utsname.h HAVE_SYS_UTSNAME_H)
+check_include_files(sys/varargs.h HAVE_SYS_VARARGS_H)
+check_include_files(sys/vfs.h HAVE_SYS_VFS_H)
+check_include_files(sys/wait.h HAVE_SYS_WAIT_H)
+check_include_files(sysexits.h HAVE_SYSEXITS_H)
+check_include_files(syslog.h HAVE_SYSLOG_H)
+check_include_files(termios.h HAVE_TERMIOS_H)
+check_include_files(time.h HAVE_TIME_H)
+check_include_files(tuxmodule.h HAVE_TUXMODULE_H)
+check_include_files(udbcext.h HAVE_UDBCEXT_H)
+
+
+check_include_files(utime.h HAVE_UTIME_H)
+check_include_files(wchar.h HAVE_WCHAR_H)
+check_include_files(xmlparse.h HAVE_XMLPARSE_H)
+check_include_files(xmltok.h HAVE_XMLTOK_H)
 
 ## Check standard types and type sizes
 
@@ -119,7 +119,7 @@ check_type_size("long int" SIZEOF_LONG_INT)
 check_type_size("long long int" SIZEOF_LONG_INT)
 check_type_size("ptrdiff_t" SIZEOF_PTRDIFF_T)
 check_type_size("short" SIZEOF_SHORT)
-check_type_size("size_t" SIZEOF_SIZE_T)
+
 check_type_size("ssize_t" SIZEOF_SSIZE_T)
 
 check_type_size("ulong" SIZEOF_ULONG)
@@ -144,3 +144,118 @@ endif(NOT SIZEOF_ULONG)
 #endif(HAVE_UINT32)
 
 ## Check libs
+
+
+## Configure for Zend
+message("** Configuration part for ZEND")
+check_include_files(inttypes.h HAVE_INTTYPES_H)
+check_include_files(stdint.h HAVE_STDINT_H)
+check_include_files(limits.h HAVE_LIMITS_H)
+check_include_files(malloc.h HAVE_MALLOC_H)
+check_include_files(string.h HAVE_STRING_H)
+check_include_files(unistd.h HAVE_UNISTD_H)
+check_include_files(stdarg.h HAVE_STDARG_H)
+check_include_files(sys/types.h HAVE_SYS_TYPES_H)
+check_include_files(sys/time.h HAVE_SYS_TIME_H)
+check_include_files(signal.h HAVE_SIGNAL_H)
+check_include_files(unix.h HAVE_UNIX_H)
+check_include_files(stdlib.h HAVE_STDLIB_H)
+check_include_files(dlfcn.h HAVE_DLFCN_H)
+## check if system is Darwin > 8
+check_include_files(mach-o/dyld.h HAVE_MACH_O_DYLD_H)
+check_type_size("size_t" SIZEOF_SIZE_T)
+include(TestSignalType)
+check_type_size("uint" SIZEOF_UINT)
+check_type_size("ulong" SIZEOF_ULONG)
+check_type_size("int32_t" SIZEOF_INT32_T)
+check_type_size("uint32_t" SIZEOF_UINT32_T)
+
+check_function_exists(vprintf HAVE_VPRINTF)
+check_function_exists(_doprnt HAVE_DOPRNT)
+check_function_exists(memcmp HAVE_MEMCMP)
+check_include_files(alloca.h HAVE_ALLOCA_H)
+check_function_exists(alloca HAVE_ALLOCA)
+check_function_exists(memcpy HAVE_MEMCPY)
+check_function_exists(strdup HAVE_STRDUP)
+check_function_exists(getpid HAVE_GETPID)
+check_function_exists(kill HAVE_KILL)
+check_function_exists(strtod HAVE_STRTOD)
+check_function_exists(strtol HAVE_STRTOL)
+check_function_exists(finite HAVE_FINITE)
+check_function_exists(fpclass HAVE_FPCLASS)
+check_function_exists(sigsetjmp HAVE_SIGSETJMP)
+
+# AC_ZEND_BROKEN_SPRINTF
+# checking whether sprintf is broken... no
+
+check_function_exists(finite HAVE_FINITE)
+check_function_exists(isfinite HAVE_ISFINITE)
+check_function_exists(isinf HAVE_ISINF)
+check_function_exists(isnan HAVE_ISNAN)
+
+# ZEND_FP_EXCEPT
+
+
+
+#Configuring Zend
+#checking for bison version... (cached) 2.3 (ok)
+#checking for inttypes.h... (cached) yes
+#checking for stdint.h... (cached) yes
+#checking for limits.h... (cached) yes
+#checking for malloc.h... yes
+#checking for string.h... (cached) yes
+#checking for unistd.h... (cached) yes
+#checking for stdarg.h... (cached) yes
+#checking for sys/types.h... (cached) yes
+#checking for sys/time.h... (cached) yes
+#checking for signal.h... (cached) yes
+#checking for unix.h... (cached) no
+#checking for stdlib.h... (cached) yes
+#checking for dlfcn.h... (cached) yes
+#checking for mach-o/dyld.h... (cached) no
+#checking for size_t... (cached) yes
+#checking return type of signal handlers... void
+#checking for uint... yes
+#checking for ulong... yes
+#checking for int32_t... yes
+#checking for uint32_t... yes
+#checking for vprintf... (cached) yes
+#checking for _doprnt... (cached) no
+#checking for working memcmp... yes
+#checking for working alloca.h... (cached) yes
+#checking for alloca... (cached) yes
+#checking for memcpy... (cached) yes
+#checking for strdup... (cached) yes
+#checking for getpid... yes
+#checking for kill... yes
+#checking for strtod... yes
+#checking for strtol... yes
+#checking for finite... yes
+#checking for fpclass... (cached) no
+#checking for sigsetjmp... no
+#checking whether sprintf is broken... no
+#checking for finite... (cached) yes
+#checking for isfinite... no
+#checking for isinf... (cached) yes
+#checking for isnan... (cached) yes
+
+#checking whether fp_except is defined... no
+
+#checking for dlfcn.h... (cached) yes
+#checking whether dlsym() requires a leading underscore in symbol names... no
+
+#checking virtual machine dispatch method... CALL
+#checking whether to enable thread-safety... no
+#checking whether to enable inline optimization for GCC... yes
+#checking whether to enable Zend debugging... no
+
+#checking for inline... inline
+#checking target system is Darwin... no
+#checking for MM alignment and log values... done
+#checking for memory allocation using mmap(MAP_ANON)... yes
+#checking for memory allocation using mmap("/dev/zero")... yes
+#checking for mremap... yes
+
+#TODETERMINE:
+#checking malloc.h usability... yes
+#checking malloc.h presence... yes

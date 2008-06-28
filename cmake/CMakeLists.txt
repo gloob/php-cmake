@@ -20,6 +20,17 @@ LIST(APPEND CMAKE_MODULE_PATH ${PHP_SOURCE_DIR}/CMake)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 
+
+
+
+
+add_subdirectory(sapi)
+
+
+
+
+
+
 # Process configure files.
 INCLUDE(ConfigureFileIn)
 

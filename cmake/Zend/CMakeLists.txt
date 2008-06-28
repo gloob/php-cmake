@@ -21,7 +21,10 @@ MESSAGE("CMAKE_SOURCE_DIR: ${CMAKE_SOURCE_DIR}")
 INCLUDE_DIRECTORIES(${Zend_SOURCE_DIR})
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR})
 
+
 set(BISON_MINIMAL_VERSION "2.3")
+set(RE2C_MINIMAL_VERSION 1304)
+
 
 ## Automatic way ? dependency ?
 INCLUDE_DIRECTORIES(${PHP_SOURCE_DIR}/TSRM)
@@ -29,12 +32,18 @@ MESSAGE("PHP_SOURCE_DIR: ${PHP_SOURCE_DIR}")
 
 
 find_package(BISON)
-find_package(RE2C)
+
 
 if(BISON_VERSION GREATER ${BISON_MINIMAL_VERSION} OR BISON_VERSION EQUAL ${BISON_MINIMAL_VERSION})
-  message(FATAL_ERROR bison version should be greater than 2.3)
+  message(STATUS "Bison version should be greater than 2.3")
 endif(BISON_VERSION GREATER ${BISON_MINIMAL_VERSION} OR BISON_VERSION EQUAL ${BISON_MINIMAL_VERSION})
 
+find_package(RE2C)
+
+message("RE2C package version == ${RE2C_VERNUM}")
+if(RE2C_VERNUM LESS ${RE2C_MINIMAL_VERSION})
+  message(STATUS "You will need re2c 0.13.4 or later if you want to regenerate PHP parsers.")
+endif(RE2C_VERNUM LESS ${RE2C_MINIMAL_VERSION})
 
 # Language parser/scanner rules
 find_file(ZEND_LANGUAGE_SCANNER "zend_language_scanner.c" PATHS ${Zend_SOURCE_DIR})

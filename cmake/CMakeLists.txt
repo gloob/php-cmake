@@ -20,7 +20,17 @@ LIST(APPEND CMAKE_MODULE_PATH ${PHP_SOURCE_DIR}/CMake)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
 
+# CMake Module includes
+INCLUDE(ConfigureFileIn)
 
+
+# Constants setting
+# Version setting
+include(php/PHP_Version)
+configure_file_in(php_version.h.cmake php_version.h DIRECTORY main)
+
+
+MESSAGE("START cmaking of PHP ${PHP_VERSION}")
 
 
 
@@ -31,8 +41,6 @@ add_subdirectory(sapi)
 
 
 
-# Process configure files.
-INCLUDE(ConfigureFileIn)
 
 # Check libs
 if (ICU_FOUND AND ICU_I18N_FOUND)
@@ -71,15 +79,9 @@ configure_file_in(php_config.h.cmake php_config.h DIRECTORY main)
 configure_file_in(zend_config.h.cmake zend_config.h DIRECTORY Zend)
 
 
-# Constants setting
-SET(PHP_VERSION_MAJOR 6)
-SET(PHP_VERSION_MINOR 0)
-SET(PHP_VERSION_SUBMINOR 0)
-SET(PHP_VERSION "${PHP_VERSION_MAJOR}.${PHP_VERSION_MINOR}.${PHP_VERSION_SUBMINOR}")
 
 
 
-MESSAGE("START cmaking of PHP ${PHP_VERSION}")
 
 
 MESSAGE("info: AUTOVARS created by CMAKE")

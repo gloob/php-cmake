@@ -46,5 +46,5 @@ if(RE2C_EXECUTABLE)
 endif(RE2C_EXECUTABLE)
 
 if(NOT RE2C_FOUND)
-  message(SEND_ERROR "re2c was not found.")
+  message(STATUS "re2c was not found.")
 endif(NOT RE2C_FOUND)

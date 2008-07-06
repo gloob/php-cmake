@@ -26,21 +26,16 @@ INCLUDE(ConfigureFileIn)
 
 # Constants setting
 # Version setting
-include(php/PHP_Version)
-configure_file_in(php_version.h.cmake php_version.h DIRECTORY main)
-
+#include(php/PHP_Version)
+#configure_file_in(php_version.h.cmake php_version.h DIRECTORY main)
 
 MESSAGE("START cmaking of PHP ${PHP_VERSION}")
 
+add_subdirectory(ext)
 
-
-add_subdirectory(sapi)
-
-
-
-
-
-
+# Recover information about extension source files
+file(READ ${PHP_BINARY_DIR}/php_extensions_source_list.txt PHP_EXTENSIONS_SOURCE_LIST)
+message("${PHP_EXTENSIONS_SOURCE_LIST}")
 
 # Check libs
 if (ICU_FOUND AND ICU_I18N_FOUND)
@@ -81,6 +76,7 @@ configure_file_in(zend_config.h.cmake zend_config.h DIRECTORY Zend)
 
 
 
+message("PHP_EXTENSIONS_SOURCE_LIST: ${PHP_EXTENSIONS_SOURCE_LIST}")
 
 
 
@@ -106,3 +102,7 @@ endif(WIN32)
 ADD_SUBDIRECTORY(Zend)
 ADD_SUBDIRECTORY(TSRM)
 ADD_SUBDIRECTORY(main)
+
+
+
+add_subdirectory(sapi)

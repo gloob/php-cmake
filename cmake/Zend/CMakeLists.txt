@@ -30,20 +30,21 @@ set(RE2C_MINIMAL_VERSION 1304)
 INCLUDE_DIRECTORIES(${PHP_SOURCE_DIR}/TSRM)
 MESSAGE("PHP_SOURCE_DIR: ${PHP_SOURCE_DIR}")
 
-
 find_package(BISON)
 
-
-if(BISON_VERSION GREATER ${BISON_MINIMAL_VERSION} OR BISON_VERSION EQUAL ${BISON_MINIMAL_VERSION})
-  message(STATUS "Bison version should be greater than 2.3")
-endif(BISON_VERSION GREATER ${BISON_MINIMAL_VERSION} OR BISON_VERSION EQUAL ${BISON_MINIMAL_VERSION})
+if(BISON_FOUND)
+  if(BISON_VERSION LESS ${BISON_MINIMAL_VERSION})
+    message(STATUS "Bison version should be greater than 2.3")
+  endif(BISON_VERSION LESS ${BISON_MINIMAL_VERSION})
+endif(BISON_FOUND)
 
 find_package(RE2C)
 
-message("RE2C package version == ${RE2C_VERNUM}")
-if(RE2C_VERNUM LESS ${RE2C_MINIMAL_VERSION})
-  message(STATUS "You will need re2c 0.13.4 or later if you want to regenerate PHP parsers.")
-endif(RE2C_VERNUM LESS ${RE2C_MINIMAL_VERSION})
+if(RE2C_FOUND)
+  if(RE2C_VERNUM LESS ${RE2C_MINIMAL_VERSION})
+    message(STATUS "You will need re2c 0.13.4 or later if you want to regenerate PHP parsers.")
+  endif(RE2C_VERNUM LESS ${RE2C_MINIMAL_VERSION})
+endif(RE2C_FOUND)
 
 # Language parser/scanner rules
 find_file(ZEND_LANGUAGE_SCANNER "zend_language_scanner.c" PATHS ${Zend_SOURCE_DIR})
@@ -65,7 +66,6 @@ if(NOT ZEND_INI_SCANNER)
 endif(NOT ZEND_INI_SCANNER)
 
 SET(PHP_ZEND_LIBRARIES)
-
 
 # Linux sources...
 
@@ -165,7 +165,7 @@ SET(Zend_library_HDRS
 )
 
 # actual target:
-ADD_LIBRARY(Zend ${Zend_library_SRCS} ${Zend_library_HDRS})
+ADD_LIBRARY(Zend ${Zend_library_SRCS} ${Zend_library_HDRS} ${BISON_zend_OUTPUTS} ${BISON_ini__OUTPUTS})
 SET_TARGET_PROPERTIES(Zend PROPERTIES VERSION 0.0.0)
 
 # add install target:

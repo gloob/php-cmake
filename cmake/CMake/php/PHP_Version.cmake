@@ -8,6 +8,8 @@
 #
 # $Id$
 
+message("* Start of Version checking.")
+
 find_file(_configure_in_filepath "${CMAKE_CURRENT_SOURCE_DIR}/configure.in")
 file(READ ${_configure_in_filepath} _configure_in_contents)
 
@@ -36,3 +38,5 @@ message("PHP_RELEASE_VERSION: ${PHP_RELEASE_VERSION}")
 message("PHP_EXTRA_VERSION: ${PHP_EXTRA_VERSION}")
 message("PHP_VERSION: ${PHP_VERSION}")
 message("PHP_VERSION_ID: ${PHP_VERSION_ID}")
+
+message("* Stop of Version checking.")

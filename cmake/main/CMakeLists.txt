@@ -81,6 +81,18 @@ SET(main_library_HDRS
     snprintf.h
     spprintf.h
     win95nt.h
+
+    streams/streams.c
+    streams/cast.c
+    streams/memory.c
+    streams/filter.c
+    streams/plain_wrapper.c
+    streams/userspace.c
+    streams/transports.c
+    streams/xp_socket.c
+    streams/mmap.c
+    streams/glob_wrapper.c
+
 )
 
 CONFIGURE_FILE(internal_functions.c.in ${CMAKE_SOURCE_DIR}/internal_functions.c)

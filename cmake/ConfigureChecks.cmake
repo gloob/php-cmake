@@ -145,6 +145,8 @@ endif(NOT SIZEOF_ULONG)
 
 ## Check libs
 
+## Configigure for main/streams
+check_include_files(glob.h HAVE_GLOB)
 
 ## Configure for Zend
 message("** Configuration part for ZEND")

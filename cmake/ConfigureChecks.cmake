@@ -122,7 +122,7 @@ check_type_size("short" SIZEOF_SHORT)
 
 check_type_size("ssize_t" SIZEOF_SSIZE_T)
 
-check_type_size("ulong" SIZEOF_ULONG)
+check_type_size("unsigned long" SIZEOF_ULONG)
 
 if(NOT SIZEOF_ULONG)
   set(ulong "unsigned long")

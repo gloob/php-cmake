@@ -8,6 +8,8 @@
 
 set(HAVE_DATE 1)
 
+configure_file_in(timelib_config.h.cmake timelib_config.h DIRECTORY date/lib)
+
 list(APPEND PHP_EXTENSIONS_SOURCE_LIST ${CMAKE_CURRENT_SOURCE_DIR}/date/lib/astro.c)
 list(APPEND PHP_EXTENSIONS_SOURCE_LIST ${CMAKE_CURRENT_SOURCE_DIR}/date/lib/timelib.c)
 list(APPEND PHP_EXTENSIONS_SOURCE_LIST ${CMAKE_CURRENT_SOURCE_DIR}/date/lib/dow.c)

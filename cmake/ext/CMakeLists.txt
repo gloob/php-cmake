@@ -16,11 +16,13 @@ foreach(MODULE ${EXTENSION_MODULES})
   string(REPLACE ${CMAKE_CURRENT_SOURCE_DIR}/ "" MODULE_NAME ${MODULE})
   string(REPLACE /CMakeLists.txt "" MODULE_NAME ${MODULE_NAME})
   message("** Including extension: ${MODULE_NAME}")
-  include(${MODULE})
-#  add_subdirectory(${MODULE_NAME})
+#  include(${MODULE})
+  add_subdirectory(${MODULE_NAME})
+  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${MODULE_NAME})
+  include_directories(${CMAKE_CURRENT_BINARY_DIR}/${MODULE_NAME})
 endforeach(MODULE)
 
 
 # Workaround for var scope
-file(WRITE ${PHP_BINARY_DIR}/php_extensions_source_list.txt "${PHP_EXTENSIONS_SOURCE_LIST}")
+#file(WRITE ${PHP_BINARY_DIR}/php_extensions_source_list.txt "${PHP_EXTENSIONS_SOURCE_LIST}")
 #message("post - PHP_EXTENSIONS_SOURCE_LIST: ${PHP_EXTENSIONS_SOURCE_LIST}")

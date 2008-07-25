@@ -8,21 +8,22 @@
 
 set(HAVE_DATE 1)
 
-configure_file_in(timelib_config.h.cmake timelib_config.h DIRECTORY date/lib)
+configure_file_in(timelib_config.h.cmake timelib_config.h DIRECTORY lib/)
 
-list(APPEND PHP_EXTENSIONS_SOURCE_LIST ${CMAKE_CURRENT_SOURCE_DIR}/date/lib/astro.c)
-list(APPEND PHP_EXTENSIONS_SOURCE_LIST ${CMAKE_CURRENT_SOURCE_DIR}/date/lib/timelib.c)
-list(APPEND PHP_EXTENSIONS_SOURCE_LIST ${CMAKE_CURRENT_SOURCE_DIR}/date/lib/dow.c)
-list(APPEND PHP_EXTENSIONS_SOURCE_LIST ${CMAKE_CURRENT_SOURCE_DIR}/date/lib/parse_date.c)
-list(APPEND PHP_EXTENSIONS_SOURCE_LIST ${CMAKE_CURRENT_SOURCE_DIR}/date/lib/parse_tz.c)
-list(APPEND PHP_EXTENSIONS_SOURCE_LIST ${CMAKE_CURRENT_SOURCE_DIR}/date/lib/tm2unixtime.c)
-list(APPEND PHP_EXTENSIONS_SOURCE_LIST ${CMAKE_CURRENT_SOURCE_DIR}/date/lib/unixtime2tm.c)
-list(APPEND PHP_EXTENSIONS_SOURCE_LIST ${CMAKE_CURRENT_SOURCE_DIR}/date/lib/parse_iso_intervals.c)
-list(APPEND PHP_EXTENSIONS_SOURCE_LIST ${CMAKE_CURRENT_SOURCE_DIR}/date/lib/interval.c)
+set(EXT_DATE_SOURCES
+  lib/astro.c
+  lib/timelib.c
+  lib/dow.c
+  lib/parse_date.c
+  lib/parse_tz.c
+  lib/tm2unixtime.c
+  lib/unixtime2tm.c
+  lib/parse_iso_intervals.c
+  lib/interval.c
+  php_date.c
+)
 
-list(APPEND PHP_EXTENSIONS_SOURCE_LIST ${CMAKE_CURRENT_SOURCE_DIR}/date/php_date.c)
-
-#set(DATELIB_SOURCES "astro.c timelib.c dow.c parse_date.c parse_tz.c tm2unixtime.c unixtime2tm.c parse_iso_intervals.c interval.c")
-#set(DATE_EXTENSION_SOURCES "php_date.c ${DATELIB_SOURCES}")
+#add_library(EXT_DATE [STATIC | SHARED | MODULE] [EXCLUDE_FROM_ALL]
+add_library(EXT_DATE ${EXT_DATE_SOURCES})
 
 #PHP_NEW_EXTENSION(date ${DATE_EXTENSION_SOURCES} {PHP_EXTENSION_SHARED})

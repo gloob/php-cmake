@@ -31,11 +31,12 @@ configure_file_in(php_version.h.cmake php_version.h DIRECTORY main)
 
 MESSAGE("START cmaking of PHP ${PHP_VERSION}")
 
-add_subdirectory(ext)
 
+## DEL
 # Recover information about extension source files
-file(READ ${PHP_BINARY_DIR}/php_extensions_source_list.txt PHP_EXTENSIONS_SOURCE_LIST)
-message("${PHP_EXTENSIONS_SOURCE_LIST}")
+#file(READ ${PHP_BINARY_DIR}/php_extensions_source_list.txt PHP_EXTENSIONS_SOURCE_LIST)
+#message("${PHP_EXTENSIONS_SOURCE_LIST}")
+## /DEL
 
 # Check libs
 if (ICU_FOUND AND ICU_I18N_FOUND)
@@ -48,6 +49,8 @@ endif (ICU_FOUND AND ICU_I18N_FOUND)
 
 # User parameters
 SET(ZEND_DEBUG 1)
+
+set(PHP_UNAME Linux)
 
 # PHP defined (where?)
 ## if test "$PHP_SHORT_TAGS" = "yes"; then
@@ -80,10 +83,6 @@ configure_file_in(zend_config.h.cmake zend_config.h DIRECTORY Zend)
 
 
 
-message("PHP_EXTENSIONS_SOURCE_LIST: ${PHP_EXTENSIONS_SOURCE_LIST}")
-
-
-
 MESSAGE("info: AUTOVARS created by CMAKE")
 MESSAGE("PHP_SOURCE_DIR: ${PHP_SOURCE_DIR}")
 MESSAGE("PHP_CMAKE_DIR: ${PHP_CMAKE_DIR}")
@@ -103,10 +102,15 @@ endif(WIN32)
 
 
 
-ADD_SUBDIRECTORY(Zend)
-ADD_SUBDIRECTORY(TSRM)
-ADD_SUBDIRECTORY(main)
+add_subdirectory(Zend)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Zend)
+
+add_subdirectory(TSRM)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/TSRM)
+
+add_subdirectory(main)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/main)
 
 
-
+add_subdirectory(ext)
 add_subdirectory(sapi)

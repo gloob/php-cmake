@@ -8,10 +8,8 @@
 #
 # $Id$
 
-message("* Start of Version checking.")
-
 find_file(_configure_in_filepath configure.in PATHS ${PHP_SOURCE_DIR})
-message("_configure_in_filepath: ${_configure_in_filepath} ${PHP_SOURCE_DIR}/configure.in")
+#message("_configure_in_filepath: ${_configure_in_filepath} ${PHP_SOURCE_DIR}/configure.in")
 
 if(_configure_in_filepath)
 
@@ -28,21 +26,19 @@ if(_configure_in_filepath)
   string(REPLACE "PHP_EXTRA_VERSION=" "" match_extra_version ${_match_extra_version})
   string(REPLACE "\"" "" match_extra_version ${match_extra_version})
 
- set(PHP_MAJOR_VERSION ${match_major_version})
- set(PHP_MINOR_VERSION ${match_minor_version})
- set(PHP_RELEASE_VERSION ${match_release_version})
- set(PHP_EXTRA_VERSION ${match_extra_version})
+  set(PHP_MAJOR_VERSION ${match_major_version})
+  set(PHP_MINOR_VERSION ${match_minor_version})
+  set(PHP_RELEASE_VERSION ${match_release_version})
+  set(PHP_EXTRA_VERSION ${match_extra_version})
 
- set(PHP_VERSION "${PHP_MAJOR_VERSION}.${PHP_MINOR_VERSION}.${PHP_RELEASE_VERSION}${PHP_EXTRA_VERSION}")
- math(EXPR PHP_VERSION_ID ${PHP_MAJOR_VERSION}*10000+${PHP_MINOR_VERSION}*100+${PHP_RELEASE_VERSION})
+  set(PHP_VERSION "${PHP_MAJOR_VERSION}.${PHP_MINOR_VERSION}.${PHP_RELEASE_VERSION}${PHP_EXTRA_VERSION}")
+  math(EXPR PHP_VERSION_ID ${PHP_MAJOR_VERSION}*10000+${PHP_MINOR_VERSION}*100+${PHP_RELEASE_VERSION})
 
- message("PHP_MAJOR_VERSION: ${PHP_MAJOR_VERSION}")
- message("PHP_MINOR_VERSION: ${PHP_MINOR_VERSION}")
- message("PHP_RELEASE_VERSION: ${PHP_RELEASE_VERSION}")
- message("PHP_EXTRA_VERSION: ${PHP_EXTRA_VERSION}")
- message("PHP_VERSION: ${PHP_VERSION}")
- message("PHP_VERSION_ID: ${PHP_VERSION_ID}")
+#  message("PHP_MAJOR_VERSION: ${PHP_MAJOR_VERSION}")
+#  message("PHP_MINOR_VERSION: ${PHP_MINOR_VERSION}")
+#  message("PHP_RELEASE_VERSION: ${PHP_RELEASE_VERSION}")
+#  message("PHP_EXTRA_VERSION: ${PHP_EXTRA_VERSION}")
+  message("** PHP_VERSION: ${PHP_VERSION}")
+  message("** PHP_VERSION_ID: ${PHP_VERSION_ID}")
 
 endif(_configure_in_filepath)
-
-message("* Stop of Version checking.")

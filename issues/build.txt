@@ -1,0 +1,24 @@
+* svn - checkout php-cmake project
+* cvs - checkout php source copy (scripts)
+* mercurial - trace changes
+
+* cmake
+
+* Linux
+	* gcc
+	* make
+	* ICU
+	* bison
+
+* Windows
+	*
+* MacOS	
+	* gcc
+	* make
+
+	* XCode (optional)
+
+
+
+
+

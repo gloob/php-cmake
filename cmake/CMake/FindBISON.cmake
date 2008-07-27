@@ -99,6 +99,7 @@ IF(BISON_EXECUTABLE)
   ENDMACRO(BISON_TARGET_option_extraopts)
 
   MACRO(BISON_TARGET Name BisonInput BisonOutput)
+    MESSAGE(STATUS "++ Renerating [${Name}] (${BisonInput} -> ${BisonOutput})")
     SET(BISON_TARGET_output_header "")
     SET(BISON_TARGET_command_opt "")
     SET(BISON_TARGET_outputs "${BisonOutput}")

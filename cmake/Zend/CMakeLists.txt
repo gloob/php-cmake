@@ -6,29 +6,26 @@
 ##
 ## $Id$
 
-
-PROJECT(Zend)
-CMAKE_MINIMUM_REQUIRED(VERSION 2.4.5)
+cmake_minimum_required(VERSION 2.4.5)
+project(Zend C)
 
 # Includes
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
-
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 # ######### General setup ##########
-MESSAGE("Zend_SOURCE_DIR: ${Zend_SOURCE_DIR}")
-MESSAGE("CMAKE_SOURCE_DIR: ${CMAKE_SOURCE_DIR}")
-INCLUDE_DIRECTORIES(${Zend_SOURCE_DIR})
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR})
+message("A: ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}")
+message("CMAKE_SOURCE_DIR: ${CMAKE_SOURCE_DIR}")
+#include_directories(${CMAKE_SOURCE_DIR})
 
-
+## Constants
 set(BISON_MINIMAL_VERSION "2.3")
 set(RE2C_MINIMAL_VERSION 1304)
 
 
 ## Automatic way ? dependency ?
-INCLUDE_DIRECTORIES(${PHP_SOURCE_DIR}/TSRM)
-MESSAGE("PHP_SOURCE_DIR: ${PHP_SOURCE_DIR}")
+include_directories(${PHP_SOURCE_DIR}/TSRM)
+message("PHP_SOURCE_DIR: ${PHP_SOURCE_DIR}")
 
 find_package(BISON)
 
@@ -47,17 +44,31 @@ if(RE2C_FOUND)
 endif(RE2C_FOUND)
 
 # Language parser/scanner rules
-find_file(ZEND_LANGUAGE_SCANNER "zend_language_scanner.c" PATHS ${Zend_SOURCE_DIR})
+find_file(ZEND_LANGUAGE_SCANNER NAMES "zend_language_scanner.c" "zend_language_scanner.h" PATHS ${Zend_SOURCE_DIR})
+
+if(NOT ZEND_LANGUAGE_SCANNER AND NOT RE2C_FOUND)
+  message(FATAL_ERROR "You need r2c to regenerate zend_language_scanner.c")
+endif(NOT ZEND_LANGUAGE_SCANNER AND NOT RE2C_FOUND)
+
 if(NOT ZEND_LANGUAGE_SCANNER)
   message("Regenerating zend_language_scanner")
   RE2C_TARGET(${Zend_SOURCE_DIR}/zend_language_scanner.l ${Zend_SOURCE_DIR}/zend_language_scanner.c "--case-inverted -cbdFt ${Zend_SOURCE_DIR}/zend_language_scanner_defs.h")
 endif(NOT ZEND_LANGUAGE_SCANNER)
 
+
 ## Regenerate always ? some options force ?
-BISON_TARGET(zend ${Zend_SOURCE_DIR}/zend_language_parser.y ${Zend_SOURCE_DIR}/zend_language_parser.c)
+if(NOT EXISTS "zend_language_parser.c" OR NOT EXISTS "zend_language_parser.h" AND NOT BISON_FOUND)
+  message(FATAL_ERROR "You need bison parser to regenerate zend_language_parser.c")
+endif(NOT EXISTS "zend_language_parser.c" OR NOT EXISTS "zend_language_parser.h" AND NOT BISON_FOUND)
+
+if(BISON_FOUND)
+	BISON_TARGET(zend ${Zend_SOURCE_DIR}/zend_language_parser.y ${Zend_SOURCE_DIR}/zend_language_parser.c)
+endif(BISON_FOUND)
 
 # INI parser/scanner rules
-BISON_TARGET(ini_ ${Zend_SOURCE_DIR}/zend_ini_parser.y ${Zend_SOURCE_DIR}/zend_ini_parser.c)
+if (BISON_FOUND)
+	BISON_TARGET(ini_ ${Zend_SOURCE_DIR}/zend_ini_parser.y ${Zend_SOURCE_DIR}/zend_ini_parser.c)
+endif (BISON_FOUND)
 
 find_file(ZEND_INI_SCANNER "zend_ini_scanner.c" PATHS ${Zend_SOURCE_DIR})
 if(NOT ZEND_INI_SCANNER)
@@ -65,13 +76,13 @@ if(NOT ZEND_INI_SCANNER)
   RE2C_TARGET(${Zend_SOURCE_DIR}/zend_ini_scanner.l ${Zend_SOURCE_DIR}/zend_ini_scanner.c "--case-inverted -cbdFt ${Zend_SOURCE_DIR}/zend_ini_scanner_defs.h")
 endif(NOT ZEND_INI_SCANNER)
 
-SET(PHP_ZEND_LIBRARIES)
+set(PHP_ZEND_LIBRARIES)
 
 # Linux sources...
 
 # ########## Zend library ##########
 # Sources:
-SET(Zend_library_SRCS
+set(Zend_library_SRCS
 
   zend_alloc.c
   zend_compile.c
@@ -111,7 +122,7 @@ SET(Zend_library_SRCS
 )
 
 # Headers:
-SET(Zend_library_HDRS
+set(Zend_library_HDRS
     acconfig.h
     zend.h
     zend_alloc.h
@@ -165,8 +176,8 @@ SET(Zend_library_HDRS
 )
 
 # actual target:
-ADD_LIBRARY(Zend ${Zend_library_SRCS} ${Zend_library_HDRS} ${BISON_zend_OUTPUTS} ${BISON_ini__OUTPUTS})
-SET_TARGET_PROPERTIES(Zend PROPERTIES VERSION 0.0.0)
+add_library(Zend ${Zend_library_SRCS} ${Zend_library_HDRS} ${BISON_zend_OUTPUTS} ${BISON_ini__OUTPUTS})
+set_target_properties(Zend PROPERTIES VERSION 0.0.0)
 
 # add install target:
-INSTALL(TARGETS Zend DESTINATION lib)
+#install(TARGETS Zend DESTINATION lib)

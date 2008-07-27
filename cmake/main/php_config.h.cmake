@@ -33,11 +33,13 @@
 #define ZEND_DLIMPORT
 
 
-/* #cmakedefine uint @uint@ */
-/* #cmakedefine ulong @ulong@ */
+#cmakedefine uint @uint@
+#cmakedefine ulong @ulong@
 
+/* 
 #undef ulong 
 #undef uint
+*/
 
 /* Define if you want to enable memory limit support */
 #define MEMORY_LIMIT 0

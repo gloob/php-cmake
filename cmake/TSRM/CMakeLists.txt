@@ -10,7 +10,7 @@
 # Manage win32 issues...
 
 # ########## Project setup ##########
-PROJECT(TSRM)
+PROJECT(TSRM C)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.4.5)
 
 # Includes

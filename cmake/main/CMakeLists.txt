@@ -1,5 +1,5 @@
 # ########## Project setup ##########
-PROJECT(main)
+PROJECT(main C)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.4.5)
 
 # Includes
@@ -54,7 +54,6 @@ SET(main_library_SRCS
 # Headers:
 SET(main_library_HDRS
     build-defs.h
-    config.w32.h
     fopen_wrappers.h
     logos.h
     php.h

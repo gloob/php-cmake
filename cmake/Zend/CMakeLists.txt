@@ -120,6 +120,10 @@ set(Zend_library_SRCS
   zend_strtod.c
   zend_gc.c
 
+  zend_language_scanner.c
+  zend_language_parser.c
+  zend_ini_scanner.c
+  zend_ini_parser.c
 )
 
 # Headers:

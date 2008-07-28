@@ -170,7 +170,6 @@ check_type_size("size_t" SIZEOF_SIZE_T)
 include(TestSignalType)
 check_type_size("uint" SIZEOF_UINT)
 check_type_size("ulong" SIZEOF_ULONG)
-set(ulong "unsigned long")
 check_type_size("int32_t" SIZEOF_INT32_T)
 check_type_size("uint32_t" SIZEOF_UINT32_T)
 
@@ -204,8 +203,9 @@ check_function_exists(isnan HAVE_ISNAN)
 check_function_exists(strerror HAVE_STRERROR)
 
 # libxml
-find_package(LibXML2)
+find_package(LibXml2)
 if(LIBXML2_FOUND)
   set(HAVE_LIBXML 1)
   set(HAVE_DOM 1)
+  include_directories(${LIBXML2_INCLUDE_DIR})
 endif(LIBXML2_FOUND)

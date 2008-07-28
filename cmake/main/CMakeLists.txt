@@ -23,7 +23,7 @@ SET(PHP_main_LIBRARIES)
 # ########## main library ##########
 # Sources:
 SET(main_library_SRCS
-##    internal_functions.c
+    internal_functions.c
 ##    internal_functions_cli.c
 #    internal_functions_nw.c
 #    internal_functions_win32.c

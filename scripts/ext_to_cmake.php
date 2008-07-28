@@ -32,8 +32,9 @@ class Extensions_Converter {
 		foreach($this->extensions as $idx => $struct) {
 			if ($struct['config']) {
 				printf("++ Processing extension: %s [%s]\n", $struct['name'], $struct['path']);
-				//print_r($struct);
-				$this->parseConfigM4($struct['config.m4']);
+				$cmake_data = $this->parseConfigM4($struct['config.m4']);
+				$cmake_content = $this->applyTemplates($cmake_data);
+				$this->writeCMakeList($struct, $cmake_content);
 			} else {
 				printf("-- NOT Processing extension: %s [%s]\n", $struct['name'], $struct['path']);
 			}
@@ -99,12 +100,35 @@ class Extensions_Converter {
 		$contents = file_get_contents($path);
 
 		// PHP_NEW_EXTENSION
-		preg_match('/PHP_NEW_EXTENSION\((?<args>(.)*)\)/', $contents, $matches);
+		preg_match('/PHP_NEW_EXTENSION\((?<args>(.*))\)/s', $contents, $matches);
 
 		$args = explode(',', $matches['args']);
-
-		var_dump($args);
 		
+		$ret['EXTENSION_NAME'] = $args[0];
+		$ret['EXTENSION_TARGET'] = 'EXT_' . strtoupper($args[0]);
+		$ret['EXTENSION_SOURCES_GROUP'] = 'EXT_' . strtoupper($args[0]) . '_SOURCES';
+		$ret['EXTENSION_SOURCES'] = $args[1];
+
+		return $ret;
+	}
+
+	protected function applyTemplates($data) {
+
+		$tpl = file_get_contents(realpath(dirname(__FILE__)) . '/ext_cmake.tpl');
+
+		foreach($data as $idx => $data) {
+			$tpl = str_replace('@@' . $idx . '@@', $data, $tpl);
+		}
+
+		return $tpl;
+	}
+
+	protected function writeCMakeList($data, $content) {
+		
+		$dirname = '/tmp/' . $data['name'];
+		$filename = $dirname . DIRECTORY_SEPARATOR . 'CMakeLists.txt';
+		mkdir($dirname);
+		file_put_contents($filename, $content);
 	}
 }
 
@@ -114,7 +138,7 @@ function main($argc, $argv) {
 
 	// Check parameters
 	if ($argc < 2) {
-		die("Sintax error: ${argv[0]} (source.in)\n");
+		die("Sintax error: ${argv[0]} (source_path)\n");
 	}
 
 	$path = $argv[1];

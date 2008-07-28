@@ -24,5 +24,5 @@ endforeach(MODULE)
 
 
 # Workaround for var scope
-#file(WRITE ${PHP_BINARY_DIR}/php_extensions_source_list.txt "${PHP_EXTENSIONS_SOURCE_LIST}")
+file(WRITE ${PHP_BINARY_DIR}/php_extensions_source_list.txt "${PHP_EXTENSIONS_SOURCE_LIST}")
 #message("post - PHP_EXTENSIONS_SOURCE_LIST: ${PHP_EXTENSIONS_SOURCE_LIST}")

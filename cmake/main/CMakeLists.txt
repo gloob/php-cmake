@@ -23,33 +23,48 @@ SET(PHP_main_LIBRARIES)
 # ########## main library ##########
 # Sources:
 SET(main_library_SRCS
-    alloca.c
-    fopen_wrappers.c
-    getopt.c
 ##    internal_functions.c
 ##    internal_functions_cli.c
 #    internal_functions_nw.c
 #    internal_functions_win32.c
     main.c
-    mergesort.c
-    network.c
-    output.c
-    php_content_types.c
-    php_ini.c
-    php_logos.c
-    php_open_temporary_file.c
-    php_scandir.c
-    php_sprintf.c
-    php_ticks.c
-    php_variables.c
-    reentrancy.c
-    rfc1867.c
-    SAPI.c
     snprintf.c
     spprintf.c
-    strlcat.c
+    php_sprintf.c
+    safe_mode.c
+    fopen_wrappers.c
+    alloca.c
+    php_scandir.c
+    php_ini.c
+    SAPI.c
+    rfc1867.c
+    php_content_types.c
     strlcpy.c
+    strlcat.c
+    mergesort.c
+    reentrancy.c
+    php_variables.c
+    php_ticks.c
+    network.c
+    php_open_temporary_file.c
+    php_logos.c
+    output.c
+    getopt.c
+
+    streams/streams.c
+    streams/cast.c
+    streams/memory.c
+    streams/filter.c
+    streams/plain_wrapper.c
+    streams/userspace.c
+    streams/transports.c
+    streams/xp_socket.c
+    streams/mmap.c
+    streams/glob_wrapper.c
+
+    internal_functions.c
 )
+
 
 # Headers:
 SET(main_library_HDRS
@@ -78,21 +93,10 @@ SET(main_library_HDRS
     php_version.h
     rfc1867.h
     SAPI.h
+    safe_mode.h
     snprintf.h
     spprintf.h
     win95nt.h
-
-    streams/streams.c
-    streams/cast.c
-    streams/memory.c
-    streams/filter.c
-    streams/plain_wrapper.c
-    streams/userspace.c
-    streams/transports.c
-    streams/xp_socket.c
-    streams/mmap.c
-    streams/glob_wrapper.c
-
 )
 
 CONFIGURE_FILE(internal_functions.c.in ${CMAKE_SOURCE_DIR}/internal_functions.c)

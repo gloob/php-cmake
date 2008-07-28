@@ -116,14 +116,15 @@ check_type_size("int" SIZEOF_INT)
 check_type_size("intmax_t" SIZEOF_INTMAX_T)
 check_type_size("long" SIZEOF_LONG)
 check_type_size("long int" SIZEOF_LONG_INT)
-check_type_size("long long int" SIZEOF_LONG_INT)
+check_type_size("long long" SIZEOF_LONG_LONG)
+check_type_size("long long int" SIZEOF_LONG_LONG_INT)
 check_type_size("ptrdiff_t" SIZEOF_PTRDIFF_T)
 check_type_size("short" SIZEOF_SHORT)
-
+check_type_size("size_t" SIZEOF_SIZE_T)
 check_type_size("ssize_t" SIZEOF_SSIZE_T)
 
-check_type_size("unsigned long" SIZEOF_ULONG)
 
+check_type_size("unsigned long" SIZEOF_ULONG)
 if(NOT SIZEOF_ULONG)
   set(ulong "unsigned long")
 endif(NOT SIZEOF_ULONG)
@@ -169,6 +170,7 @@ check_type_size("size_t" SIZEOF_SIZE_T)
 include(TestSignalType)
 check_type_size("uint" SIZEOF_UINT)
 check_type_size("ulong" SIZEOF_ULONG)
+set(ulong "unsigned long")
 check_type_size("int32_t" SIZEOF_INT32_T)
 check_type_size("uint32_t" SIZEOF_UINT32_T)
 
@@ -198,66 +200,12 @@ check_function_exists(isnan HAVE_ISNAN)
 # ZEND_FP_EXCEPT
 
 
+# ext/standard
+check_function_exists(strerror HAVE_STRERROR)
 
-#Configuring Zend
-#checking for bison version... (cached) 2.3 (ok)
-#checking for inttypes.h... (cached) yes
-#checking for stdint.h... (cached) yes
-#checking for limits.h... (cached) yes
-#checking for malloc.h... yes
-#checking for string.h... (cached) yes
-#checking for unistd.h... (cached) yes
-#checking for stdarg.h... (cached) yes
-#checking for sys/types.h... (cached) yes
-#checking for sys/time.h... (cached) yes
-#checking for signal.h... (cached) yes
-#checking for unix.h... (cached) no
-#checking for stdlib.h... (cached) yes
-#checking for dlfcn.h... (cached) yes
-#checking for mach-o/dyld.h... (cached) no
-#checking for size_t... (cached) yes
-#checking return type of signal handlers... void
-#checking for uint... yes
-#checking for ulong... yes
-#checking for int32_t... yes
-#checking for uint32_t... yes
-#checking for vprintf... (cached) yes
-#checking for _doprnt... (cached) no
-#checking for working memcmp... yes
-#checking for working alloca.h... (cached) yes
-#checking for alloca... (cached) yes
-#checking for memcpy... (cached) yes
-#checking for strdup... (cached) yes
-#checking for getpid... yes
-#checking for kill... yes
-#checking for strtod... yes
-#checking for strtol... yes
-#checking for finite... yes
-#checking for fpclass... (cached) no
-#checking for sigsetjmp... no
-#checking whether sprintf is broken... no
-#checking for finite... (cached) yes
-#checking for isfinite... no
-#checking for isinf... (cached) yes
-#checking for isnan... (cached) yes
-
-#checking whether fp_except is defined... no
-
-#checking for dlfcn.h... (cached) yes
-#checking whether dlsym() requires a leading underscore in symbol names... no
-
-#checking virtual machine dispatch method... CALL
-#checking whether to enable thread-safety... no
-#checking whether to enable inline optimization for GCC... yes
-#checking whether to enable Zend debugging... no
-
-#checking for inline... inline
-#checking target system is Darwin... no
-#checking for MM alignment and log values... done
-#checking for memory allocation using mmap(MAP_ANON)... yes
-#checking for memory allocation using mmap("/dev/zero")... yes
-#checking for mremap... yes
-
-#TODETERMINE:
-#checking malloc.h usability... yes
-#checking malloc.h presence... yes
+# libxml
+find_package(LibXML2)
+if(LIBXML2_FOUND)
+  set(HAVE_LIBXML 1)
+  set(HAVE_DOM 1)
+endif(LIBXML2_FOUND)

@@ -91,6 +91,7 @@ set(Zend_library_SRCS
   zend_execute.c
   zend_execute_API.c
   zend_highlight.c
+  zend_ini_scanner.c
   zend_llist.c
   zend_opcode.c
   zend_operators.c

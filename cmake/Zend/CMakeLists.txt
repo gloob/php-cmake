@@ -86,6 +86,7 @@ set(Zend_library_SRCS
 
   zend_alloc.c
   zend_compile.c
+  zend_closures.c
   zend_constants.c
   zend_dynamic_array.c
   zend_execute.c
@@ -133,6 +134,7 @@ set(Zend_library_HDRS
     zend_alloc.h
     zend_API.h
     zend_builtin_functions.h
+    zend_closures.h
     zend_compile.h
     zend_config.nw.h
     zend_config.w32.h

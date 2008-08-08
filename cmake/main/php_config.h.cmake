@@ -1898,6 +1898,9 @@
 /* Define to 1 if you have the `utime' function. */
 #cmakedefine HAVE_UTIME 1
 
+/* Define to 1 if you have the `utimes' function. */
+#cmakedefine HAVE_UTIMES 1
+
 /* Define to 1 if you have the <utime.h> header file. */
 #cmakedefine HAVE_UTIME_H 1
 

@@ -12,6 +12,8 @@ class Extensions_Converter {
 
 	private $ext_path;
 	private $extensions;
+
+	private $files;
 	
 	public function __construct($path) {
 
@@ -52,6 +54,7 @@ class Extensions_Converter {
 			$p = $this->nPath($dir->path) . DIRECTORY_SEPARATOR . $e;
 
 			if (is_dir($p)) {
+echo "e: $e\n";
 				if ($e != '.' || $e != '..' || $e != '.svn' || $e != 'CVS') {
 
 					$this->extensions[]['name'] = $e;
@@ -67,6 +70,8 @@ class Extensions_Converter {
 					} else {
 						$configm4 = NULL;
 					}
+
+					if ($e == 'mbstring') $configm4 = NULL;
 
 					if ($configm4) {
 						$this->extensions[$index]['config'] = true;
@@ -95,21 +100,107 @@ class Extensions_Converter {
 
 	}
 
+	protected function existVars($string) {
+		$ret = preg_match('/\$\S*/', $string);
+		return $ret ? true : false;
+	}
+
+	protected function setFiles($files_str) {
+		// erase backslash
+		$this->files = str_replace("\\", "", $files_str);
+	}
+
+	protected function interpretVars($var_string, $contents) {
+
+		$var_string = str_replace("\\", "", $var_string);
+
+		if ($this->existVars($var_string)) {
+
+			preg_match('/\$(?<var>\S*)/', $var_string, $parse_vars);
+
+			if($parse_vars) {
+				$var = $parse_vars['var'];
+				preg_match("/$var=\"(?<files>[^\"]*)/s", $contents, $matches);
+			
+				$files = $matches['files'];
+				
+				if ($files) {
+					$var_string = str_replace("\$$var", $files, $var_string);
+					$var_string = str_replace("\$$var", "", $var_string);
+				} else {
+					$var_string = str_replace("\$$var", "", $var_string);
+				}
+
+				$var_string = str_replace("\\", "", $var_string);
+			}
+
+			if ($this->existVars($var_string)) $this->interpretVars($var_string, $contents);
+		}
+
+		return $var_string;
+	}
+
+	protected function parseFunction($func_name, $contents, $func_args) {
+
+		if (preg_match("/$func_name\((?<args>[^\)]*)/s", $contents, $matches)) {
+
+			$args = explode(',', $matches['args']);
+	
+			foreach ($args as $idx => $arg) {
+				$data = $args[$idx];
+				$data = str_replace('[', '', $data);
+				$data = str_replace(']', '', $data);
+				$ret[$func_args[$idx]] = trim($data);
+			}
+		
+			return $ret;
+		}
+	}
+
 	protected function parseConfigM4($path) {
 
 		$contents = file_get_contents($path);
 
 		// PHP_NEW_EXTENSION
-		preg_match('/PHP_NEW_EXTENSION\((?<args>(.*))\)/s', $contents, $matches);
+		$new_extension = $this->parseFunction('PHP_NEW_EXTENSION', $contents, array('ext_name', 'ext_sources', 'ext_shared', 'ext_cflags', 'ext_cxx', 'ext_zend'));
+		//print_r($new_extension);
 
-		$args = explode(',', $matches['args']);
+		if (isset($new_extension['ext_cxx'])) {
+			$ext_defines = $this->interpretVars($new_extension['ext_cxx'], $contents);
+			$ext_defines = str_replace('@ext_srcdir@', '${CMAKE_CURRENT_SOURCE_DIR}', $ext_defines);
+			$ext_defines = str_replace('@ext_builddir@', '${CMAKE_CURRENT_BINARY_DIR}', $ext_defines);
+			preg_match('/\-I(?<include>[^\s]*)/', $ext_defines, $include_vars);
+			$ret['EXTENSION_DEFINITIONS'] = "include_directories(\"" . $include_vars['include'] . "\")\n";
+		} else {
+			$ret['EXTENSION_DEFINITIONS'] = NULL;
+		}
 		
-		$ret['EXTENSION_NAME'] = $args[0];
-		$ret['EXTENSION_TARGET'] = 'EXT_' . strtoupper($args[0]);
-		$ret['EXTENSION_SOURCES_GROUP'] = 'EXT_' . strtoupper($args[0]) . '_SOURCES';
-		$ret['EXTENSION_SOURCES'] = $args[1];
 
+		// interpret vars
+		$this->setFiles($new_extension['ext_sources']);
+		$this->files = $this->interpretVars($this->files, $contents);
+
+		$ret['EXTENSION_NAME'] = $new_extension['ext_name'];
+		$ret['EXTENSION_TARGET'] = $this->cmakeTarget($new_extension['ext_name']);
+		$ret['EXTENSION_SOURCES_GROUP'] = 'EXT_' . strtoupper($new_extension['ext_name']) . '_SOURCES';
+		$ret['EXTENSION_SOURCES'] = $this->files;
+
+		// PHP_ADD_EXTENSION_DEP
+		$ext_dep = $this->parseFunction('PHP_ADD_EXTENSION_DEP', $contents, array('ext_name', 'ext_deps', 'deps_conf'));
+		if (isset($ext_dep['ext_name'])) {
+			if ($ext_dep['ext_name'] == $new_extension['ext_name']) {
+				$ret['EXTENSION_DEFINITIONS'] .= sprintf("add_dependencies(%s, %s)\n", $this->cmakeTarget($ext_dep['ext_name']), $this->cmakeTarget($ext_dep['ext_deps']));
+			} else {
+				error_log("-- PHP_ADD_EXTENSION_DEP case not processed []");
+			}
+		}
+
+//print_r($ret);
 		return $ret;
+	}
+
+	protected function cmakeTarget($ext_target) {
+		return 'EXT_' . strtoupper($ext_target);
 	}
 
 	protected function applyTemplates($data) {
@@ -117,7 +208,11 @@ class Extensions_Converter {
 		$tpl = file_get_contents(realpath(dirname(__FILE__)) . '/ext_cmake.tpl');
 
 		foreach($data as $idx => $data) {
-			$tpl = str_replace('@@' . $idx . '@@', $data, $tpl);
+			if ($data) {
+				$tpl = str_replace('@@' . $idx . '@@', $data, $tpl);
+			} else {
+				$tpl = str_replace('@@' . $idx . '@@', '', $tpl);
+			}
 		}
 
 		return $tpl;
@@ -125,10 +220,11 @@ class Extensions_Converter {
 
 	protected function writeCMakeList($data, $content) {
 		
-		$dirname = '/tmp/' . $data['name'];
+		$dirname = '/tmp/ext/' . $data['name'];
 		$filename = $dirname . DIRECTORY_SEPARATOR . 'CMakeLists.txt';
-		mkdir($dirname);
+		if (!is_dir($dirname)) mkdir($dirname);
 		file_put_contents($filename, $content);
+		//file_put_contents($this->ext_path . DIRECTORY_SEPARATOR . $data['name'] . DIRECTORY_SEPARATOR . 'CMakeLists.txt', $content);
 	}
 }
 

@@ -125,9 +125,11 @@ check_type_size("ssize_t" SIZEOF_SSIZE_T)
 
 
 check_type_size("unsigned long" SIZEOF_ULONG)
+set(ulong "unsigned long")
 if(NOT SIZEOF_ULONG)
   set(ulong "unsigned long")
 endif(NOT SIZEOF_ULONG)
+message("sizeof(unsigned long) == ${SIZEOF_ULONG}")
 
 
 #check_type_size("unsigned long" SIZEOF_LONG)
@@ -209,3 +211,9 @@ if(LIBXML2_FOUND)
   set(HAVE_DOM 1)
   include_directories(${LIBXML2_INCLUDE_DIR})
 endif(LIBXML2_FOUND)
+
+# fileinfo
+check_function_exists(utimes HAVE_UTIMES)
+
+# pcre
+set(HAVE_BUNDLED_PCRE 1)

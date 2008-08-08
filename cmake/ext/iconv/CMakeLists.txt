@@ -6,14 +6,13 @@
 ##
 ## $Id$
 
-# Extension: ctype
+# Extension: iconv
 
 
-
-set(EXT_CTYPE_SOURCES
-  ctype.c
+set(EXT_ICONV_SOURCES
+  iconv.c
 )
 
 #add_library(EXT_XML [STATIC | SHARED | MODULE] [EXCLUDE_FROM_ALL]
-add_library(EXT_CTYPE ${EXT_CTYPE_SOURCES})
-##target_link_libraries(EXT_CTYPE ${@@EXTENSION_LIBRARIES@@})
+add_library(EXT_ICONV ${EXT_ICONV_SOURCES})
+##target_link_libraries(EXT_ICONV ${@@EXTENSION_LIBRARIES@@})

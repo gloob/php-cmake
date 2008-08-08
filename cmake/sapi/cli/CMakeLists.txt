@@ -7,6 +7,7 @@
 ## $Id$
 
 message("PHP_EXTENSION_SOURCE_LIST: ${PHP_EXTENSIONS_SOURCE_LIST}")
+message("SAPI EXTENSION LIST: ${EXTENSION_LIST}")
 
-add_executable(php php_cli.c php_cli_readline.c ${PHP_EXTENSIONS_SOURCE_LIST})
-target_link_libraries(php Zend main TSRM EXT_STANDARD EXT_DATE EXT_DOM EXT_PHAR EXT_XML)
+add_executable(php php_cli.c php_cli_readline.c)
+target_link_libraries(php Zend main TSRM ${EXTENSION_LIST})

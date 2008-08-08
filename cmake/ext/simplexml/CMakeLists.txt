@@ -6,14 +6,12 @@
 ##
 ## $Id$
 
-# Extension: ctype
+# Extension: simplexml
 
-
-
-set(EXT_CTYPE_SOURCES
-  ctype.c
+set(EXT_SIMPLEXML_SOURCES
+  simplexml.c
 )
 
 #add_library(EXT_XML [STATIC | SHARED | MODULE] [EXCLUDE_FROM_ALL]
-add_library(EXT_CTYPE ${EXT_CTYPE_SOURCES})
-##target_link_libraries(EXT_CTYPE ${@@EXTENSION_LIBRARIES@@})
+add_library(EXT_SIMPLEXML ${EXT_SIMPLEXML_SOURCES})
+target_link_libraries(EXT_SIMPLEXML EXT_LIBXML)

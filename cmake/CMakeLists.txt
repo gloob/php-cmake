@@ -111,6 +111,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/TSRM)
 add_subdirectory(main)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/main)
 
-
 add_subdirectory(ext)
+message("extension list: ${EXTENSION_LIST}")
 add_subdirectory(sapi)

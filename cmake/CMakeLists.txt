@@ -76,11 +76,9 @@ message(cmake_required_include: ${CMAKE_REQUIRED_INCLUDES})
 # Do the configure checks.
 include(ConfigureChecks.cmake)
 
-# Configure in main zone
-configure_file_in(php_config.h.cmake php_config.h DIRECTORY main)
-# Configure in Zend zone
-configure_file_in(zend_config.h.cmake zend_config.h DIRECTORY Zend)
 
+option(HAVE_SIMPLEXML "have simplexml" 1) 
+option(HAVE_ICONV "have iconv" 1) 
 
 
 
@@ -113,4 +111,10 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/main)
 
 add_subdirectory(ext)
 message("extension list: ${EXTENSION_LIST}")
+
+# Configure in main zone
+configure_file_in(php_config.h.cmake php_config.h DIRECTORY main)
+# Configure in Zend zone
+configure_file_in(zend_config.h.cmake zend_config.h DIRECTORY Zend)
+
 add_subdirectory(sapi)

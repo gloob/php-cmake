@@ -101,11 +101,6 @@ SET(main_library_HDRS
 
 CONFIGURE_FILE(internal_functions.c.in ${CMAKE_SOURCE_DIR}/internal_functions.c)
 
-add_definitions("-DPHP_ATOM_INC")
-#add_definitions("-fvisibility=hidden")
-#add_definitions("-no-cpp-precomp")
-#add_definitions("-O2")
-
 # actual target:
 ADD_LIBRARY(main ${main_library_SRCS} ${main_library_HDRS})
 SET_TARGET_PROPERTIES(main PROPERTIES VERSION 0.0.0)

@@ -8,6 +8,8 @@
 
 # Extension: simplexml
 
+set(HAVE_SIMPLEXML 1)
+
 set(EXT_SIMPLEXML_SOURCES
   simplexml.c
 )

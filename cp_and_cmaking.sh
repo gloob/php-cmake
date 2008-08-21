@@ -17,5 +17,9 @@ cp -r cmake/* $1
 cd $SELF_DIR
 
 #rm -rf build && mkdir -p build
+if [ ! -d ./build ]; then
+  mkdir -p ./build
+fi
+
 cd build && cmake -DCMAKE_BUILD_TYPE:STRING=Debug ../$1 && make VERBOSE=1
 #cd build && cmake -DCMAKE_BUILD_TYPE:STRING=Debug ../$1 && make 

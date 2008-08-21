@@ -7,7 +7,7 @@
 ## $Id$
 
 # Extension: filter
-project(filter)
+project(filter C)
 
 
 set(EXT_FILTER_SOURCES

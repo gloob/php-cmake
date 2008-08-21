@@ -10,7 +10,7 @@
 ## This extension is not well parsed by ext_to_cmake.php!!
 
 # Extension: pcre
-project(pcre)
+project(pcre C)
 
 ## Check if user provided --with-pcre-regex
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/pcrelib")

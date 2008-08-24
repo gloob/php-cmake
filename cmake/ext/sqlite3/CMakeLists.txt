@@ -8,9 +8,8 @@
 
 # Extension: sqlite3
 
-#include_directories("")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/libsqlite")
 set(sqlite3_extra_sources libsqlite/sqlite3.c)
-
 
 set(EXT_SQLITE3_SOURCES
   sqlite3.c ${sqlite3_extra_sources}

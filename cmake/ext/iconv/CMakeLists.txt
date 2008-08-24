@@ -21,4 +21,7 @@ set(EXT_ICONV_SOURCES
 
 #add_library(EXT_XML [STATIC | SHARED | MODULE] [EXCLUDE_FROM_ALL]
 add_library(EXT_ICONV ${EXT_ICONV_SOURCES})
-target_link_libraries(EXT_ICONV ${ICONV_LIBRARY})
+if(ICONV_FOUND)
+  target_link_libraries(EXT_ICONV ${ICONV_LIBRARY})
+endif(ICONV_FOUND)
+

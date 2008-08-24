@@ -125,7 +125,7 @@ check_type_size("ssize_t" SIZEOF_SSIZE_T)
 
 
 check_type_size("unsigned long" SIZEOF_ULONG)
-set(ulong "unsigned long")
+#set(ulong "unsigned long")
 if(NOT SIZEOF_ULONG)
   set(ulong "unsigned long")
 endif(NOT SIZEOF_ULONG)

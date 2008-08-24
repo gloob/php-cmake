@@ -1,30 +1,26 @@
 # ########## Project setup ##########
-PROJECT(main C)
-CMAKE_MINIMUM_REQUIRED(VERSION 2.4.5)
+project(main C)
 
 # Includes
-message("$$ including: ${CMAKE_CURRENT_SOURCE_DIR}")
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
+#message("$$ including: ${CMAKE_CURRENT_SOURCE_DIR}")
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-
-# ######### General setup ##########
-INCLUDE_DIRECTORIES(${main_SOURCE_DIR})
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR})
+#include_directories(${CMAKE_SOURCE_DIR})
 
 ## Automatic way ? <- REFACTOR THIS
-INCLUDE_DIRECTORIES(${PHP_SOURCE_DIR}/Zend)
-INCLUDE_DIRECTORIES(${PHP_SOURCE_DIR}/TSRM)
-INCLUDE_DIRECTORIES(${PHP_SOURCE_DIR}/ext/date/lib)
+include_directories(${PHP_SOURCE_DIR}/Zend)
+include_directories(${PHP_BINARY_DIR}/Zend)
+include_directories(${PHP_SOURCE_DIR}/TSRM)
+include_directories(${PHP_SOURCE_DIR}/ext/date/lib)
 
-SET(PHP_main_LIBRARIES)
+set(PHP_main_LIBRARIES)
 
 
 # ########## main library ##########
 # Sources:
-SET(main_library_SRCS
-    internal_functions.c
-    internal_functions_cli.c
+set(main_library_SRCS
+#    internal_functions_cli.c
 #    internal_functions_nw.c
 #    internal_functions_win32.c
     main.c
@@ -61,13 +57,11 @@ SET(main_library_SRCS
     streams/xp_socket.c
     streams/mmap.c
     streams/glob_wrapper.c
-
-    internal_functions.c
 )
 
 
 # Headers:
-SET(main_library_HDRS
+set(main_library_HDRS
     build-defs.h
     fopen_wrappers.h
     logos.h
@@ -99,11 +93,11 @@ SET(main_library_HDRS
     win95nt.h
 )
 
-CONFIGURE_FILE(internal_functions.c.in ${CMAKE_SOURCE_DIR}/internal_functions.c)
+configure_file(internal_functions.c.in ${CMAKE_SOURCE_DIR}/internal_functions.c)
 
 # actual target:
-ADD_LIBRARY(main ${main_library_SRCS} ${main_library_HDRS})
-SET_TARGET_PROPERTIES(main PROPERTIES VERSION 0.0.0)
+add_library(main ${main_library_SRCS} ${main_library_HDRS})
+set_target_properties(main PROPERTIES VERSION 0.0.0)
 
 # add install target:
-INSTALL(TARGETS main DESTINATION lib)
+install(TARGETS main DESTINATION lib)

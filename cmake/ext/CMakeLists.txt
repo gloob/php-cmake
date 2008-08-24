@@ -9,6 +9,8 @@
 include(php/PHP_ARG_ENABLE)
 include(php/PHP_NEW_EXTENSION)
 
+include_directories(${PHP_BINARY_DIR}/Zend)
+
 set(EXTENSION_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 file(GLOB_RECURSE EXTENSION_MODULES . CMakeLists.txt)

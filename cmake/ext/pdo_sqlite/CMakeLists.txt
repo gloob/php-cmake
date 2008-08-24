@@ -9,6 +9,7 @@
 # Extension: pdo_sqlite
 
 include_directories(${EXTENSION_DIR})
+include_directories("${EXTENSION_DIR}/sqlite3/libsqlite")
 
 set(EXT_PDO_SQLITE_SOURCES
   pdo_sqlite.c sqlite_driver.c sqlite_statement.c

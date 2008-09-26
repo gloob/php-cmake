@@ -120,6 +120,7 @@ echo "e: $e\n";
 
 			if($parse_vars) {
 				$var = $parse_vars['var'];
+				$regexp = "/$var=\"(?<files>[^\"]*)/s";
 				preg_match("/$var=\"(?<files>[^\"]*)/s", $contents, $matches);
 			
 				$files = $matches['files'];
@@ -142,10 +143,13 @@ echo "e: $e\n";
 
 	protected function parseFunction($func_name, $contents, $func_args) {
 
-		if (preg_match("/$func_name\((?<args>[^\)]*)/s", $contents, $matches)) {
+		$func_regexp = "/$func_name\((?<args>[^\)]*)/s";
+		//$func_regexp = "/$func_name\(((?<args>[^()]+)|(?R))*\)/xs";
+
+		if (preg_match($func_regexp, $contents, $matches)) {
 
 			$args = explode(',', $matches['args']);
-	
+
 			foreach ($args as $idx => $arg) {
 				$data = $args[$idx];
 				$data = str_replace('[', '', $data);
@@ -160,6 +164,11 @@ echo "e: $e\n";
 	protected function parseConfigM4($path) {
 
 		$contents = file_get_contents($path);
+
+		// PHP_ARG_WITH
+		$php_arg_with = $this->parseFunction('PHP_ARG_WITH', $contents, array('arg_name', 'check_message', 'help_text', 'default_val', 'ext_or_not'));
+		//printf("PHP_ARG_WITH(%s, %s, %s, %s, %s)\n", $php_arg_with['arg_name'], $php_arg_with['check_message'],$php_arg_with['help_text'],$php_arg_with['default_val'],$php_arg_with['ext_or_not']);
+		//print_r($php_arg_with);
 
 		// PHP_NEW_EXTENSION
 		$new_extension = $this->parseFunction('PHP_NEW_EXTENSION', $contents, array('ext_name', 'ext_sources', 'ext_shared', 'ext_cflags', 'ext_cxx', 'ext_zend'));
@@ -222,7 +231,7 @@ echo "e: $e\n";
 		
 		$dirname = '/tmp/ext/' . $data['name'];
 		$filename = $dirname . DIRECTORY_SEPARATOR . 'CMakeLists.txt';
-		if (!is_dir($dirname)) mkdir($dirname);
+		if (!is_dir($dirname)) mkdir($dirname, 0777, TRUE);
 		file_put_contents($filename, $content);
 		//file_put_contents($this->ext_path . DIRECTORY_SEPARATOR . $data['name'] . DIRECTORY_SEPARATOR . 'CMakeLists.txt', $content);
 	}

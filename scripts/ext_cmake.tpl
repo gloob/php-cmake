@@ -1,4 +1,4 @@
-## CMake date File
+## CMake extension file for @@EXTENSION_NAME@@.
 ##
 ## PHP License
 ##

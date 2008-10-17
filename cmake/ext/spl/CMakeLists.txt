@@ -8,6 +8,8 @@
 
 # Extension: spl
 
+option(spl "Enable spl support" ON)
+option(spl-shared "Shared spl" OFF)
 
 set(EXT_SPL_SOURCES
   php_spl.c spl_functions.c spl_engine.c spl_iterators.c spl_array.c spl_directory.c spl_sxe.c spl_exceptions.c spl_observer.c spl_dllist.c spl_heap.c spl_fixedarray.c

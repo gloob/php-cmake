@@ -7,6 +7,8 @@
 ## $Id$
 
 ## CANNOT BE SHARED
+option(libxml "Enable libxml support" ON)
+#option(libxml-shared "Shared libxml" OFF)
 
 set(HAVE_LIBXML 1)
 

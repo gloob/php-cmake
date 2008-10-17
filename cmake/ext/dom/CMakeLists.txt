@@ -8,6 +8,8 @@
 
 # Extension: dom
 
+option(dom "Enable dom support" ON)
+option(dom-shared "Shared dom" OFF)
 
 
 set(EXT_DOM_SOURCES

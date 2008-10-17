@@ -8,6 +8,9 @@
 
 ## dependency with ext/date
 
+option(standard "Enable standard support" ON)
+option(standard-shared "Shared standard" OFF)
+
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/../date/lib)
 
 if(WIN32)

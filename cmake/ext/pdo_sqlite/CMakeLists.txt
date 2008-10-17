@@ -8,6 +8,9 @@
 
 # Extension: pdo_sqlite
 
+option(pdo_sqlite "Enable pdo_sqlite support" ON)
+option(pdo_sqlite-shared "Shared pdo_sqlite" OFF)
+
 include_directories(${EXTENSION_DIR})
 include_directories("${EXTENSION_DIR}/sqlite3/libsqlite")
 

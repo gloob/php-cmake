@@ -27,7 +27,6 @@ set(main_library_SRCS
     snprintf.c
     spprintf.c
     php_sprintf.c
-    safe_mode.c
     fopen_wrappers.c
     alloca.c
     php_scandir.c
@@ -87,7 +86,6 @@ set(main_library_HDRS
     php_version.h
     rfc1867.h
     SAPI.h
-    safe_mode.h
     snprintf.h
     spprintf.h
     win95nt.h

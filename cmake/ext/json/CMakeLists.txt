@@ -8,6 +8,8 @@
 
 # Extension: json
 
+option(json "Enable json support" ON)
+option(json-shared "Shared json" OFF)
 
 
 set(EXT_JSON_SOURCES

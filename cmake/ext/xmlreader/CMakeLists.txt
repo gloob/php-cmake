@@ -8,6 +8,8 @@
 
 # Extension: xmlreader
 
+option(xmlreader "Enable xmlreader support" ON)
+option(xmlreader-shared "Shared xmlreader" OFF)
 
 
 set(EXT_XMLREADER_SOURCES

@@ -8,6 +8,9 @@
 
 # Extension: sqlite3
 
+option(sqlite3 "Enable sqlite3 support" ON)
+option(sqlite3-shared "Shared sqlite3" OFF)
+
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/libsqlite")
 set(sqlite3_extra_sources libsqlite/sqlite3.c)
 

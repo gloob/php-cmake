@@ -8,6 +8,8 @@
 
 # Extension: pdo
 
+option(pdo "Enable pdo support" ON)
+option(pdo-shared "Shared pdo" OFF)
 
 
 set(EXT_PDO_SOURCES

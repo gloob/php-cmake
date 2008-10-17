@@ -8,6 +8,8 @@
 
 # Extension: tokenizer
 
+option(tokenizer "Enable tokenizer support" ON)
+option(tokenizer-shared "Shared tokenizer" OFF)
 
 
 set(EXT_TOKENIZER_SOURCES

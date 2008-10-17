@@ -8,6 +8,8 @@
 
 # Extension: reflection
 
+option(reflection "Enable reflection support" ON)
+option(reflection-shared "Shared reflection" OFF)
 
 
 set(EXT_REFLECTION_SOURCES

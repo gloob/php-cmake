@@ -8,6 +8,8 @@
 
 # Extension: session
 
+option(session "Enable session support" ON)
+option(session-shared "Shared session" OFF)
 
 
 set(EXT_SESSION_SOURCES

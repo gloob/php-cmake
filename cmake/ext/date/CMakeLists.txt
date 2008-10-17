@@ -6,6 +6,10 @@
 ##
 ## $Id$
 
+
+option(date "Enable date support" ON)
+option(date-shared "Shared date" OFF)
+
 set(HAVE_DATE 1)
 
 configure_file_in(timelib_config.h.cmake timelib_config.h DIRECTORY lib/)

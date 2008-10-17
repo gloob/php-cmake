@@ -8,6 +8,10 @@
 
 # Extension: @@EXTENSION_NAME@@
 
+option(@@EXTENSION_NAME@@ "Enable @@EXTENSION_NAME@@ support" ON)
+option(@@EXTENSION_NAME@@-shared "Shared @@EXTENSION_NAME@@" OFF)
+
+
 @@EXTENSION_DEFINITIONS@@
 
 set(@@EXTENSION_SOURCES_GROUP@@

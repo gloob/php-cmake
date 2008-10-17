@@ -1,0 +1,9 @@
+Very very fast guide
+---------------------
+
+1) ./scripts/co_php5.sh 
+(this will checkout an anonymous fresh copy of PHP5 source code at ./src/php5 dir.) 
+
+2) ./build_src.sh src/php5
+(copy cmake files to PHP5 source code and launch cmake.))
+

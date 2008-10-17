@@ -8,6 +8,9 @@
 
 # Extension: simplexml
 
+option(simplexml "Enable simplexml support" ON)
+option(simplexml-shared "Shared simplexml" OFF)
+
 set(HAVE_SIMPLEXML 1)
 
 set(EXT_SIMPLEXML_SOURCES

@@ -8,6 +8,8 @@
 
 # Extension: hash
 
+option(hash "Enable hash support" ON)
+option(hash-shared "Shared hash" OFF)
 
 
 set(EXT_HASH_SOURCES

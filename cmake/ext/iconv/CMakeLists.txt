@@ -8,6 +8,9 @@
 
 # Extension: iconv
 
+option(iconv "Enable iconv support" ON)
+option(iconv-shared "Shared iconv" OFF)
+
 set(HAVE_ICONV 1)
 
 find_package(ICONV)

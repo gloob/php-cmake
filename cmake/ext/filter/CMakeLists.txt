@@ -9,6 +9,8 @@
 # Extension: filter
 project(filter C)
 
+option(filter "Enable filter support" ON)
+option(filter-shared "Shared filter" OFF)
 
 set(EXT_FILTER_SOURCES
   filter.c sanitizing_filters.c logical_filters.c callback_filter.c

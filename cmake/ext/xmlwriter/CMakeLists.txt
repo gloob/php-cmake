@@ -8,6 +8,8 @@
 
 # Extension: xmlwriter
 
+option(xmlwriter "Enable xmlwriter support" ON)
+option(xmlwriter-shared "Shared xmlwriter" OFF)
 
 
 set(EXT_XMLWRITER_SOURCES

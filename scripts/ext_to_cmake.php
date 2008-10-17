@@ -169,6 +169,8 @@ echo "e: $e\n";
 		$php_arg_with = $this->parseFunction('PHP_ARG_WITH', $contents, array('arg_name', 'check_message', 'help_text', 'default_val', 'ext_or_not'));
 		//printf("PHP_ARG_WITH(%s, %s, %s, %s, %s)\n", $php_arg_with['arg_name'], $php_arg_with['check_message'],$php_arg_with['help_text'],$php_arg_with['default_val'],$php_arg_with['ext_or_not']);
 		//print_r($php_arg_with);
+// option(phar "Enable phar archive support" OFF)
+// option(phar-shared "phar shared" OFF)
 
 		// PHP_NEW_EXTENSION
 		$new_extension = $this->parseFunction('PHP_NEW_EXTENSION', $contents, array('ext_name', 'ext_sources', 'ext_shared', 'ext_cflags', 'ext_cxx', 'ext_zend'));

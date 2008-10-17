@@ -8,6 +8,8 @@
 
 # Extension: ctype
 
+option(ctype "Enable ctype support" ON)
+option(ctype-shared "Shared ctype" OFF)
 
 
 set(EXT_CTYPE_SOURCES

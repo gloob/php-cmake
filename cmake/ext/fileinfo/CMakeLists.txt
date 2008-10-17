@@ -8,6 +8,9 @@
 
 # Extension: fileinfo
 
+option(fileinfo "Enable fileinfo support" ON)
+option(fileinfo-shared "Shared fileinfo" OFF)
+
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/libmagic")
 
 set(EXT_FILEINFO_SOURCES

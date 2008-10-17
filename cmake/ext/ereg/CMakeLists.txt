@@ -8,6 +8,9 @@
 
 # Extension: ereg
 
+option(ereg "Enable ereg support" ON)
+option(ereg-shared "Shared ereg" OFF)
+
 #include_directories("")
 
 

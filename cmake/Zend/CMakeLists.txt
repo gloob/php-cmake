@@ -119,6 +119,10 @@ set(Zend_library_SRCS
   zend_exceptions.c
   zend_strtod.c
   zend_gc.c
+  zend_unicode.c
+
+  zend_language_scanner.c
+  zend_ini_scanner.c
 )
 
 # Headers:
@@ -174,6 +178,7 @@ set(Zend_library_HDRS
     zend_vm_def.h
     zend_vm_execute.h
     zend_vm_opcodes.h
+    zend_unicode.h
 )
 
 # actual target:

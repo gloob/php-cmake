@@ -99,6 +99,11 @@ else(WIN32)
 endif(WIN32)
 
 
+## Compiler definitions
+if(UNIX)
+#  add_definitions(-DPHP_ATOM_INC -O2 -fvisibility=hidden)
+  add_definitions(-DPHP_ATOM_INC -fvisibility=hidden)
+endif()
 
 add_subdirectory(Zend)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Zend)

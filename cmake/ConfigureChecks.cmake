@@ -181,11 +181,8 @@ check_function_exists(memcmp HAVE_MEMCMP)
 check_include_files(alloca.h HAVE_ALLOCA_H)
 check_function_exists(alloca HAVE_ALLOCA)
 check_function_exists(memcpy HAVE_MEMCPY)
-check_function_exists(strdup HAVE_STRDUP)
 check_function_exists(getpid HAVE_GETPID)
 check_function_exists(kill HAVE_KILL)
-check_function_exists(strtod HAVE_STRTOD)
-check_function_exists(strtol HAVE_STRTOL)
 check_function_exists(finite HAVE_FINITE)
 check_function_exists(fpclass HAVE_FPCLASS)
 check_function_exists(sigsetjmp HAVE_SIGSETJMP)
@@ -198,11 +195,31 @@ check_function_exists(isfinite HAVE_ISFINITE)
 check_function_exists(isinf HAVE_ISINF)
 check_function_exists(isnan HAVE_ISNAN)
 
+check_function_exists(strcoll HAVE_STRCOLL)
+check_function_exists(strdup HAVE_STRDUP)
+check_function_exists(strerror HAVE_STRERROR)
+check_function_exists(strfmon HAVE_STRFMON)
+check_function_exists(strftime HAVE_STRFTIME)
+check_function_exists(strlcat HAVE_STRLCAT)
+check_function_exists(strlcpy HAVE_STRLCPY)
+check_function_exists(strndup HAVE_STRNDUP)
+check_function_exists(strndup HAVE_STRNDUP)
+check_function_exists(strobrk HAVE_STRPBRK)
+check_function_exists(strptime HAVE_STRPTIME)
+
+check_function_exists(strstr HAVE_STRSTR)
+check_function_exists(strtod HAVE_STRTOD)
+check_function_exists(strtok_r HAVE_STRTOK_R)
+check_function_exists(strtol HAVE_STRTOL)
+check_function_exists(strtoll HAVE_STRTOLL)
+check_function_exists(strtoul HAVE_STRTOUL)
+check_function_exists(strtoull HAVE_STRTOULL)
+
+
 # ZEND_FP_EXCEPT
 
 
 # ext/standard
-check_function_exists(strerror HAVE_STRERROR)
 
 # libxml
 find_package(LibXml2)

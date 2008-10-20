@@ -19,6 +19,11 @@ LIST(APPEND CMAKE_MODULE_PATH ${PHP_SOURCE_DIR}/CMake)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Zend)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/TSRM)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/main)
+
+
 # CMake Module includes
 include(ConfigureFileIn)
 
@@ -43,7 +48,7 @@ if (ICU_FOUND AND ICU_I18N_FOUND)
 #  add_definitions(-DPHP_HAS_ICU=2)
   message("Found ICU: ${ICU_INCLUDE_DIRS}")
   include_directories(${ICU_INCLUDE_DIRS})
-  set(PHP_ZEND_LIBRARIES ${ICU_LIBRARIES} ${ICU_I18N_LIBRARIES})
+  set(PHP_ZEND_LIBRARIES ${ICU_LIBRARIES} ${ICU_I18N_LIBRARIES} ${ICU_IO_LIBRARIES})
 else (ICU_FOUND AND ICU_I18N_FOUND)
   message(FATAL_ERROR "Need to install ICU (http://icu-project.org) for compiling PHP.")
 endif (ICU_FOUND AND ICU_I18N_FOUND)
@@ -105,21 +110,18 @@ if(UNIX)
   add_definitions(-DPHP_ATOM_INC -fvisibility=hidden)
 endif()
 
-add_subdirectory(Zend)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Zend)
-
-add_subdirectory(TSRM)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/TSRM)
-
-add_subdirectory(main)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/main)
+# Configure in main zone
+#configure_file_in(php_config.h.cmake php_config.h DIRECTORY main)
+# Configure in Zend zone
+configure_file_in(zend_config.h.cmake zend_config.h DIRECTORY Zend)
 
 add_subdirectory(ext)
 message("extension list: ${EXTENSION_LIST}")
 
-# Configure in main zone
-configure_file_in(php_config.h.cmake php_config.h DIRECTORY main)
-# Configure in Zend zone
-configure_file_in(zend_config.h.cmake zend_config.h DIRECTORY Zend)
+add_subdirectory(Zend)
+
+add_subdirectory(TSRM)
+
+add_subdirectory(main)
 
 add_subdirectory(sapi)

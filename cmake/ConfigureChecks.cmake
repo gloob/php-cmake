@@ -215,6 +215,14 @@ check_function_exists(strtoll HAVE_STRTOLL)
 check_function_exists(strtoul HAVE_STRTOUL)
 check_function_exists(strtoull HAVE_STRTOULL)
 
+check_function_exists(link HAVE_LINK)
+check_function_exists(localeconv HAVE_LOCALECONV)
+check_function_exists(localtime_r HAVE_LOCALTIME_R)
+check_function_exists(lockf HAVE_LOCKF)
+check_function_exists(log1p HAVE_LOG1P)
+check_function_exists(lrand48 HAVE_LRAND48)
+check_function_exists(makedev HAVE_MAKEDEV)
+
 
 # ZEND_FP_EXCEPT
 

@@ -12,15 +12,17 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${PHP_SOURCE_DIR}/Zend)
 include_directories(${PHP_BINARY_DIR}/Zend)
 include_directories(${PHP_SOURCE_DIR}/TSRM)
-include_directories(${PHP_SOURCE_DIR}/ext/date/lib)
+include_directories(${PHP_BINARY_DIR}/ext/date/lib)
 
 set(PHP_main_LIBRARIES)
 
+configure_file(internal_functions.c.in ${CMAKE_CURRENT_SOURCE_DIR}/internal_functions.c)
 
 # ########## main library ##########
 # Sources:
 set(main_library_SRCS
-#    internal_functions_cli.c
+    internal_functions.c
+    internal_functions_cli.c
 #    internal_functions_nw.c
 #    internal_functions_win32.c
     main.c
@@ -56,6 +58,7 @@ set(main_library_SRCS
     streams/xp_socket.c
     streams/mmap.c
     streams/glob_wrapper.c
+    streams/unicode_filter.c
 )
 
 
@@ -89,9 +92,10 @@ set(main_library_HDRS
     snprintf.h
     spprintf.h
     win95nt.h
+
+    streams/php_stream_filter_api.h
 )
 
-configure_file(internal_functions.c.in ${CMAKE_SOURCE_DIR}/internal_functions.c)
 
 # actual target:
 add_library(main ${main_library_SRCS} ${main_library_HDRS})

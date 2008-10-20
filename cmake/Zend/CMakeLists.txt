@@ -62,13 +62,14 @@ if(NOT EXISTS "zend_language_parser.c" OR NOT EXISTS "zend_language_parser.h" AN
 endif(NOT EXISTS "zend_language_parser.c" OR NOT EXISTS "zend_language_parser.h" AND NOT BISON_FOUND)
 
 if(BISON_FOUND)
-	BISON_TARGET(zend ${Zend_SOURCE_DIR}/zend_language_parser.y ${Zend_SOURCE_DIR}/zend_language_parser.c)
+	# bison -p zend -v -d zend_language_parser.y -o zend_language_parser.c
+	BISON_TARGET(zend ${Zend_SOURCE_DIR}/zend_language_parser.y ${Zend_SOURCE_DIR}/zend_language_parser.c COMPILE_FLAGS "-v")
 endif(BISON_FOUND)
 
 # INI parser/scanner rules
-if (BISON_FOUND)
-	BISON_TARGET(ini_ ${Zend_SOURCE_DIR}/zend_ini_parser.y ${Zend_SOURCE_DIR}/zend_ini_parser.c)
-endif (BISON_FOUND)
+#if (BISON_FOUND)
+#	BISON_TARGET(ini_ ${Zend_SOURCE_DIR}/zend_ini_parser.y ${Zend_SOURCE_DIR}/zend_ini_parser.c)
+#endif (BISON_FOUND)
 
 find_file(ZEND_INI_SCANNER "zend_ini_scanner.c" PATHS ${Zend_SOURCE_DIR})
 if(NOT ZEND_INI_SCANNER)
@@ -76,7 +77,8 @@ if(NOT ZEND_INI_SCANNER)
   RE2C_TARGET(${Zend_SOURCE_DIR}/zend_ini_scanner.l ${Zend_SOURCE_DIR}/zend_ini_scanner.c "--case-inverted -cbdFt ${Zend_SOURCE_DIR}/zend_ini_scanner_defs.h")
 endif(NOT ZEND_INI_SCANNER)
 
-set(PHP_ZEND_LIBRARIES)
+#set(PHP_ZEND_OBJECTS ${Zend_BINARY_DIR}/CMakeFiles/Zend.dir/zend_ini_parser.o ${Zend_BINARY_DIR}/CMakeFiles/Zend.dir/zend_default_classes.o PARENT_SCOPE)
+set(PHP_ZEND_SOURCES ${Zend_SOURCE_DIR}/zend_ini_parser.c ${Zend_SOURCE_DIR}/zend_default_classes.c PARENT_SCOPE)
 
 # Linux sources...
 
@@ -113,16 +115,19 @@ set(Zend_library_SRCS
   zend_objects_API.c
   zend_ts_hash.c
   zend_stream.c
-  zend_default_classes.c
+#  zend_default_classes.c
   zend_iterators.c
   zend_interfaces.c
   zend_exceptions.c
   zend_strtod.c
   zend_gc.c
   zend_unicode.c
+  zend_strtol.c
 
   zend_language_scanner.c
   zend_ini_scanner.c
+  zend_language_parser.c
+#  zend_ini_parser.c
 )
 
 # Headers:
@@ -182,7 +187,7 @@ set(Zend_library_HDRS
 )
 
 # actual target:
-add_library(Zend ${Zend_library_SRCS} ${Zend_library_HDRS} ${BISON_zend_OUTPUTS} ${BISON_ini__OUTPUTS})
+add_library(Zend ${Zend_library_SRCS} ${Zend_library_HDRS} ${BISON_zend_OUTPUTS} ${BISON_ini_OUTPUTS})
 set_target_properties(Zend PROPERTIES VERSION 0.0.0)
 
 # add install target:

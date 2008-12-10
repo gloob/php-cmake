@@ -154,7 +154,8 @@ echo "e: $e\n";
 				$data = $args[$idx];
 				$data = str_replace('[', '', $data);
 				$data = str_replace(']', '', $data);
-				$ret[$func_args[$idx]] = trim($data);
+				isset($func_args[$idx]) ? $i = $func_args[$idx] : $i = $idx;
+				$ret[$i] = trim($data);
 			}
 		
 			return $ret;

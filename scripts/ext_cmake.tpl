@@ -10,6 +10,7 @@
 
 option(@@EXTENSION_NAME@@ "Enable @@EXTENSION_NAME@@ support" ON)
 option(@@EXTENSION_NAME@@-shared "Shared @@EXTENSION_NAME@@" OFF)
+option(@@EXTENSION_NAME@@-sapi "@@EXTENSION_NAME@@ SAPI class" "@@EXTENSION_SAPI@@")
 
 
 @@EXTENSION_DEFINITIONS@@

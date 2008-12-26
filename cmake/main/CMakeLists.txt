@@ -1,7 +1,16 @@
-# ########## Project setup ##########
+# PHP main zone.
+#
+# PHP License
+#
+# Author: Alejandro Leiva <gloob@php.net>
+#
+# $Id$
+
 project(main C)
 
 # Includes
+include(php/PHP_INTERNAL_FUNCTIONS)
+
 #message("$$ including: ${CMAKE_CURRENT_SOURCE_DIR}")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
@@ -14,7 +23,12 @@ include_directories(${PHP_BINARY_DIR}/Zend)
 include_directories(${PHP_SOURCE_DIR}/TSRM)
 include_directories(${PHP_BINARY_DIR}/ext/date/lib)
 
+
+
 set(PHP_main_LIBRARIES)
+
+PHP_INTERNAL_FUNCTIONS("${EXTENSION_NAME_LIST}" "${EXTENSION_NAME_LIST}" ${main_BINARY_DIR}/internal_functions.c)
+PHP_INTERNAL_FUNCTIONS("${EXTENSION_NAME_LIST}" "${EXTENSION_NAME_LIST}" ${main_BINARY_DIR}/internal_functions_cli.c)
 
 configure_file(internal_functions.c.in ${CMAKE_CURRENT_SOURCE_DIR}/internal_functions.c)
 

@@ -174,7 +174,7 @@ echo "e: $e\n";
 // option(phar-shared "phar shared" OFF)
 
 		// PHP_NEW_EXTENSION
-		$new_extension = $this->parseFunction('PHP_NEW_EXTENSION', $contents, array('ext_name', 'ext_sources', 'ext_shared', 'ext_cflags', 'ext_cxx', 'ext_zend'));
+		$new_extension = $this->parseFunction('PHP_NEW_EXTENSION', $contents, array('ext_name', 'ext_sources', 'ext_shared', 'ext_sapi', 'ext_cflags', 'ext_cxx', 'ext_zend'));
 		//print_r($new_extension);
 
 		if (isset($new_extension['ext_cxx'])) {
@@ -196,6 +196,8 @@ echo "e: $e\n";
 		$ret['EXTENSION_TARGET'] = $this->cmakeTarget($new_extension['ext_name']);
 		$ret['EXTENSION_SOURCES_GROUP'] = 'EXT_' . strtoupper($new_extension['ext_name']) . '_SOURCES';
 		$ret['EXTENSION_SOURCES'] = $this->files;
+
+		$ret['EXTENSION_SAPI'] = isset($new_extension['ext_sapi']) ? $new_extension['ext_sapi'] : "0";
 
 		// PHP_ADD_EXTENSION_DEP
 		$ext_dep = $this->parseFunction('PHP_ADD_EXTENSION_DEP', $contents, array('ext_name', 'ext_deps', 'deps_conf'));

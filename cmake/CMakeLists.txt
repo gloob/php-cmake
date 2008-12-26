@@ -111,7 +111,7 @@ if(UNIX)
 endif()
 
 # Configure in main zone
-#configure_file_in(php_config.h.cmake php_config.h DIRECTORY main)
+configure_file_in(php_config.h.cmake php_config.h DIRECTORY main)
 # Configure in Zend zone
 configure_file_in(zend_config.h.cmake zend_config.h DIRECTORY Zend)
 

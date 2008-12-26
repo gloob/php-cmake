@@ -10,6 +10,8 @@
 ## TODO:
 ## * Port build/genif.sh + build/order_by_dep.awk + build/print_include.awk
 ##   to CMake script.
+## * Look for windows build system behavior with internal_function and 
+##   implement it.
 
 macro(PHP_INTERNAL_FUNCTIONS exts_list exts_cli_list target)
 

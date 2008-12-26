@@ -62,14 +62,16 @@ if(NOT EXISTS "zend_language_parser.c" OR NOT EXISTS "zend_language_parser.h" AN
 endif(NOT EXISTS "zend_language_parser.c" OR NOT EXISTS "zend_language_parser.h" AND NOT BISON_FOUND)
 
 if(BISON_FOUND)
+	message("[php-CMake]: Regenerating zend_language_parser.c")
 	# bison -p zend -v -d zend_language_parser.y -o zend_language_parser.c
 	BISON_TARGET(zend ${Zend_SOURCE_DIR}/zend_language_parser.y ${Zend_SOURCE_DIR}/zend_language_parser.c COMPILE_FLAGS "-v")
 endif(BISON_FOUND)
 
 # INI parser/scanner rules
-#if (BISON_FOUND)
-#	BISON_TARGET(ini_ ${Zend_SOURCE_DIR}/zend_ini_parser.y ${Zend_SOURCE_DIR}/zend_ini_parser.c)
-#endif (BISON_FOUND)
+if (BISON_FOUND)
+	message("[php-CMake]: Regenerating zend_ini_parser.c")
+	BISON_TARGET(ini_ ${Zend_SOURCE_DIR}/zend_ini_parser.y ${Zend_SOURCE_DIR}/zend_ini_parser.c COMPILE_FLAGS "-v")
+endif (BISON_FOUND)
 
 find_file(ZEND_INI_SCANNER "zend_ini_scanner.c" PATHS ${Zend_SOURCE_DIR})
 if(NOT ZEND_INI_SCANNER)
@@ -126,7 +128,7 @@ set(Zend_library_SRCS
 
   zend_language_scanner.c
   zend_ini_scanner.c
-  zend_language_parser.c
+#  zend_language_parser.c
 #  zend_ini_parser.c
 )
 

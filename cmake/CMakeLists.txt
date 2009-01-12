@@ -11,6 +11,12 @@ message("BEFORE cmaking of PHP ${PHP_VERSION}")
 cmake_minimum_required(VERSION 2.4.0 FATAL_ERROR)
 project(PHP C)
 
+# Don't allow in-source builds
+if(PROJECT_BINARY_DIR STREQUAL PROJECT_SOURCE_DIR)
+  message(FATAL_ERROR "Please set your build dir outside your source dir and try again.")
+endif(PROJECT_BINARY_DIR STREQUAL PROJECT_SOURCE_DIR)
+
+
 #SET(CMAKE_MODULE_PATH ${PHP_SOURCE_DIR}/CMake ${CMAKE_MODULE_PATH})
 # Another way
 LIST(APPEND CMAKE_MODULE_PATH ${PHP_SOURCE_DIR}/CMake)

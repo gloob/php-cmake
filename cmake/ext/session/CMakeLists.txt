@@ -11,6 +11,8 @@
 option(session "Enable session support" ON)
 option(session-shared "Shared session" OFF)
 
+include_directories(${PHP_BINARY_DIR}/ext/date/lib/)
+
 
 set(EXT_SESSION_SOURCES
   session.c mod_files.c mod_mm.c mod_user.c

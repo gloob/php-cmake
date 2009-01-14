@@ -63,6 +63,7 @@ endif(NOT EXISTS "zend_language_parser.c" OR NOT EXISTS "zend_language_parser.h"
 
 if(BISON_FOUND)
 	message("[php-CMake]: Regenerating zend_language_parser.c")
+	# yacc -p zend -v -d ./zend_language_parser.y -o zend_language_parser.c
 	# bison -p zend -v -d zend_language_parser.y -o zend_language_parser.c
 	BISON_TARGET(zend ${Zend_SOURCE_DIR}/zend_language_parser.y ${Zend_SOURCE_DIR}/zend_language_parser.c COMPILE_FLAGS "-v")
 endif(BISON_FOUND)
